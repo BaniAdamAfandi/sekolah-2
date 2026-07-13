@@ -1,0 +1,95 @@
+---
+interface Props {
+  settings: Record<string, any>;
+}
+const { settings } = Astro.props;
+const path = Astro.url.pathname;
+const nav = [
+  { label: 'Beranda', url: '/' },
+  { label: 'Profil', url: '/profil' },
+  { label: 'Berita', url: '/berita' },
+  { label: 'Agenda', url: '/agenda' },
+  { label: 'Guru', url: '/guru' },
+  { label: 'Galeri', url: '/galeri' },
+  { label: 'Kontak', url: '/kontak' },
+];
+const isActive = (url: string) => (url === '/' ? path === '/' : path.startsWith(url));
+---
+
+<header class="sticky top-0 z-40 border-b border-line bg-white/95 backdrop-blur">
+  <div class="container-x flex h-16 items-center justify-between gap-4">
+    <!-- Brand -->
+    <a href="/" class="flex items-center gap-3">
+      <img src={settings.logo} alt="Logo" width="40" height="40" class="h-10 w-10" />
+      <span class="flex flex-col leading-none">
+        <span class="font-display text-base font-bold text-primary">{settings.schoolName}</span>
+        <span class="font-mono text-[10px] uppercase tracking-wider text-ink/70">Kota Batu</span>
+      </span>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden items-center gap-6 lg:flex" aria-label="Navigasi utama">
+      {
+        nav.map((item) => (
+          <a
+            href={item.url}
+            class:list={[
+              'font-mono text-xs font-bold uppercase tracking-wider transition-colors',
+              isActive(item.url) ? 'text-accent' : 'text-primary hover:text-accent',
+            ]}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <!-- CTA + mobile toggle -->
+    <div class="flex items-center gap-3">
+      <a href={settings.admissionsUrl} class="btn btn-primary hidden px-4 py-2.5 text-xs sm:inline-flex">
+        {settings.admissionsLabel}
+      </a>
+      <button
+        id="nav-toggle"
+        type="button"
+        class="grid h-10 w-10 place-items-center border border-line text-primary lg:hidden"
+        aria-label="Buka menu"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile nav -->
+  <nav id="mobile-nav" class="hidden border-t border-line bg-white lg:hidden" aria-label="Navigasi mobile">
+    <div class="container-x flex flex-col py-2">
+      {
+        nav.map((item) => (
+          <a
+            href={item.url}
+            class:list={[
+              'border-b border-line/60 py-3 font-mono text-sm font-bold uppercase tracking-wider',
+              isActive(item.url) ? 'text-accent' : 'text-primary',
+            ]}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <a href={settings.admissionsUrl} class="btn btn-primary my-3 w-full">{settings.admissionsLabel}</a>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const menu = document.getElementById('mobile-nav');
+  toggle?.addEventListener('click', () => {
+    const open = menu?.classList.toggle('hidden') === false;
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+</script>

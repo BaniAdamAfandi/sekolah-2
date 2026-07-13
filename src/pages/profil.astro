@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { getPage } from '../lib/content';
+
+const p = await getPage('profil');
+---
+
+<BaseLayout title={p.pageTitle} description={p.pageSubtitle}>
+  <PageHeader eyebrow="Tentang Sekolah" title={p.pageTitle} subtitle={p.pageSubtitle} />
+
+  <!-- Sambutan -->
+  <section class="border-b border-line bg-surface">
+    <div class="container-x grid grid-cols-1 gap-10 py-16 md:grid-cols-12 md:py-20">
+      <div class="md:col-span-4">
+        <div class="relative p-3">
+          <div class="absolute inset-0 translate-x-3 translate-y-3 border border-accent"></div>
+          <img
+            src={p.sambutanFoto}
+            alt={p.sambutanNama}
+            width="600"
+            height="800"
+            class="relative aspect-[3/4] w-full object-cover"
+          />
+        </div>
+      </div>
+      <div class="md:col-span-8">
+        <span class="eyebrow">Sambutan</span>
+        <h2 class="mt-3 text-3xl font-bold md:text-4xl">Sambutan {p.sambutanJabatan}</h2>
+        <p class="mt-6 whitespace-pre-line text-lg leading-relaxed text-ink">{p.sambutanText}</p>
+        <div class="mt-8 border-t border-line pt-5">
+          <p class="font-display text-lg font-bold text-primary">{p.sambutanNama}</p>
+          <p class="font-mono text-xs uppercase tracking-wider text-accent">{p.sambutanJabatan}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visi Misi -->
+  <section class="border-b border-line bg-white">
+    <div class="container-x grid grid-cols-1 gap-10 py-16 md:grid-cols-12 md:py-20">
+      <div class="md:col-span-5">
+        <span class="eyebrow">Arah Kebijakan</span>
+        <h2 class="mt-3 text-3xl font-bold md:text-4xl">Visi & Misi</h2>
+        <div class="mt-8 border border-line bg-surface p-7">
+          <h3 class="font-mono text-xs font-bold uppercase tracking-[0.2em] text-accent">Visi</h3>
+          <p class="mt-3 text-lg font-medium leading-relaxed text-primary">{p.visi}</p>
+        </div>
+      </div>
+      <div class="md:col-span-7">
+        <h3 class="font-mono text-xs font-bold uppercase tracking-[0.2em] text-accent md:mt-[4.75rem]">Misi</h3>
+        <ol class="mt-4 divide-y divide-line border-t border-line">
+          {
+            p.misi?.map((m: string, i: number) => (
+              <li class="flex items-baseline gap-4 py-4">
+                <span class="font-mono text-sm font-bold text-accent">{String(i + 1).padStart(2, '0')}</span>
+                <span class="text-base leading-relaxed text-ink">{m}</span>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sejarah -->
+  <section class="border-b border-line bg-surface">
+    <div class="container-x grid grid-cols-1 gap-10 py-16 md:grid-cols-12 md:py-20">
+      <div class="md:col-span-4">
+        <span class="eyebrow">Rekam Jejak</span>
+        <h2 class="mt-3 text-3xl font-bold md:text-4xl">Sejarah Singkat</h2>
+      </div>
+      <div class="md:col-span-8">
+        <p class="whitespace-pre-line text-lg leading-relaxed text-ink">{p.sejarah}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Komite -->
+  {
+    p.komite?.length > 0 && (
+      <section class="bg-white">
+        <div class="container-x py-16 md:py-20">
+          <span class="eyebrow">Tata Kelola</span>
+          <h2 class="mt-3 text-3xl font-bold md:text-4xl">Komite Sekolah</h2>
+          <div class="mt-10 grid grid-cols-1 border border-line sm:grid-cols-3">
+            {p.komite.map((k: any, i: number) => (
+              <div class:list={['bg-surface p-7', i !== 0 && 'border-t border-line sm:border-l sm:border-t-0']}>
+                <div class="font-mono text-xs text-accent">{String(i + 1).padStart(2, '0')}/</div>
+                <p class="mt-3 font-display text-lg font-bold text-primary">{k.name}</p>
+                <p class="mt-1 font-mono text-xs uppercase tracking-wider text-ink/60">{k.role}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+</BaseLayout>

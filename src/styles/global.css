@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --tw-ring-color: #0d9488;
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-surface text-ink font-sans antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display text-primary;
+    text-wrap: balance;
+  }
+  ::selection {
+    @apply bg-accent text-white;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-container px-5 sm:px-8;
+  }
+  .eyebrow {
+    @apply font-mono text-xs font-bold uppercase tracking-[0.2em] text-accent;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-none border px-6 py-3 text-sm font-bold uppercase tracking-wider transition-colors duration-200;
+  }
+  .btn-primary {
+    @apply border-accent bg-accent text-white hover:bg-accent-light;
+  }
+  .btn-dark {
+    @apply border-primary bg-primary text-white hover:bg-primary-light;
+  }
+  .btn-ghost {
+    @apply border-line bg-white text-primary hover:border-primary;
+  }
+  .badge {
+    @apply inline-block rounded-none bg-accent px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-wider text-white;
+  }
+  .prose-content {
+    @apply leading-relaxed text-ink;
+  }
+  .prose-content h2 {
+    @apply mt-8 mb-3 text-2xl;
+  }
+  .prose-content h3 {
+    @apply mt-6 mb-2 text-xl;
+  }
+  .prose-content p {
+    @apply mb-4;
+  }
+  .prose-content ul {
+    @apply mb-4 list-disc space-y-1 pl-5;
+  }
+  .prose-content ol {
+    @apply mb-4 list-decimal space-y-1 pl-5;
+  }
+  .prose-content a {
+    @apply text-accent underline underline-offset-2;
+  }
+  .prose-content blockquote {
+    @apply my-6 border-l-2 border-accent bg-white px-5 py-3 italic text-primary;
+  }
+  .prose-content img {
+    @apply my-6 w-full border border-line;
+  }
+}

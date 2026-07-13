@@ -1,0 +1,73 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import NewsRow from '../../components/NewsRow.astro';
+
+const berita = (await getCollection('berita')).sort(
+  (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
+);
+const categories = ['Semua', ...new Set(berita.map((b) => b.data.category))];
+---
+
+<BaseLayout title="Berita & Publikasi" description="Berita, pengumuman, dan publikasi terkini SDN Bulukerto 01.">
+  <PageHeader eyebrow="Publikasi" title="Berita & Publikasi" subtitle="Kabar terkini seputar kegiatan, prestasi, dan pengumuman resmi sekolah." />
+
+  <section class="bg-white">
+    <div class="container-x py-14 md:py-20">
+      <!-- Filter (client-side) -->
+      <div class="mb-8 flex flex-wrap gap-2" id="filter-bar">
+        {
+          categories.map((c) => (
+            <button
+              type="button"
+              data-cat={c}
+              class:list={[
+                'filter-btn border px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider transition-colors',
+                c === 'Semua' ? 'border-primary bg-primary text-white' : 'border-line bg-white text-primary hover:border-primary',
+              ]}
+            >
+              {c}
+            </button>
+          ))
+        }
+      </div>
+
+      <div class="border-t border-line" id="news-list">
+        {
+          berita.map((b) => (
+            <div class="news-item" data-cat={b.data.category}>
+              <NewsRow
+                href={`/berita/${b.slug}`}
+                title={b.data.title}
+                category={b.data.category}
+                date={b.data.publishDate}
+                excerpt={b.data.excerpt}
+              />
+            </div>
+          ))
+        }
+      </div>
+      {berita.length === 0 && <p class="py-10 text-center text-ink">Belum ada berita.</p>}
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const items = document.querySelectorAll<HTMLElement>('.news-item');
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const cat = btn.dataset.cat;
+      buttons.forEach((b) => {
+        b.classList.remove('border-primary', 'bg-primary', 'text-white');
+        b.classList.add('border-line', 'bg-white', 'text-primary');
+      });
+      btn.classList.add('border-primary', 'bg-primary', 'text-white');
+      btn.classList.remove('border-line', 'bg-white', 'text-primary');
+      items.forEach((it) => {
+        it.style.display = cat === 'Semua' || it.dataset.cat === cat ? '' : 'none';
+      });
+    });
+  });
+</script>

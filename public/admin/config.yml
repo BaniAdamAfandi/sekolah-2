@@ -1,0 +1,219 @@
+# =====================================================================
+# Decap CMS — Konfigurasi Konten SDN Bulukerto 01
+# Semua konten di bawah ini dapat diubah langsung dari dasbor /admin.
+# =====================================================================
+backend:
+  name: github
+  repo: BaniAdamAfandi/sekolah-2 # Ganti bila nama user/repo GitHub berbeda
+  branch: main # Branch yang di-deploy Vercel
+  # OAuth ditangani oleh serverless function bawaan di /api (lihat README).
+  base_url: https://sdn-bulukerto-01.vercel.app # Ganti dengan domain Vercel final
+  auth_endpoint: /api/auth
+
+# Simpan draft langsung ke repo (tanpa PR). Ubah ke "simple" bila mau editorial workflow.
+publish_mode: simple
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+# Lokalisasi Bahasa Indonesia untuk tombol default
+locale: "en"
+
+collections:
+  # ---------------- PENGATURAN SITUS ----------------
+  - name: "pengaturan"
+    label: "⚙️ Pengaturan Situs"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "settings"
+        label: "Identitas & Kontak Sekolah"
+        file: "src/content/pages/settings.json"
+        fields:
+          - { label: "Nama Sekolah", name: "schoolName", widget: "string" }
+          - { label: "Tagline", name: "schoolTagline", widget: "string" }
+          - { label: "Logo", name: "logo", widget: "image" }
+          - { label: "NPSN", name: "npsn", widget: "string" }
+          - { label: "Akreditasi", name: "akreditasi", widget: "string" }
+          - { label: "Alamat", name: "address", widget: "text" }
+          - { label: "Telepon", name: "phone", widget: "string" }
+          - { label: "Nomor WhatsApp (mis. 6281234567890)", name: "whatsapp", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Link Google Maps", name: "mapsUrl", widget: "string" }
+          - { label: "Embed Google Maps (URL output=embed)", name: "mapsEmbed", widget: "string" }
+          - { label: "Label Tombol Pendaftaran", name: "admissionsLabel", widget: "string" }
+          - { label: "URL Tombol Pendaftaran", name: "admissionsUrl", widget: "string" }
+          - label: "Media Sosial"
+            name: "socials"
+            widget: "object"
+            fields:
+              - { label: "Instagram", name: "instagram", widget: "string", required: false }
+              - { label: "Facebook", name: "facebook", widget: "string", required: false }
+              - { label: "YouTube", name: "youtube", widget: "string", required: false }
+
+      - name: "home"
+        label: "Halaman Beranda"
+        file: "src/content/pages/home.json"
+        fields:
+          - { label: "Eyebrow / Label Kecil Hero", name: "heroEyebrow", widget: "string" }
+          - { label: "Judul Hero", name: "heroTitle", widget: "string" }
+          - { label: "Deskripsi Hero", name: "heroDescription", widget: "text" }
+          - { label: "Gambar Hero", name: "heroImage", widget: "image" }
+          - { label: "Alt Gambar Hero", name: "heroImageAlt", widget: "string" }
+          - { label: "Tombol Utama - Teks", name: "primaryButtonLabel", widget: "string" }
+          - { label: "Tombol Utama - URL", name: "primaryButtonUrl", widget: "string" }
+          - { label: "Tombol Kedua - Teks", name: "secondaryButtonLabel", widget: "string" }
+          - { label: "Tombol Kedua - URL", name: "secondaryButtonUrl", widget: "string" }
+          - label: "Statistik (4 kolom)"
+            name: "stats"
+            widget: "list"
+            fields:
+              - { label: "Angka", name: "value", widget: "string" }
+              - { label: "Keterangan", name: "label", widget: "string" }
+          - { label: "Judul Bagian Tentang", name: "aboutTitle", widget: "string" }
+          - { label: "Teks Tentang", name: "aboutText", widget: "text" }
+          - label: "Poin Unggulan"
+            name: "aboutHighlights"
+            widget: "list"
+            field: { label: "Poin", name: "item", widget: "string" }
+          - { label: "Judul CTA", name: "ctaTitle", widget: "string" }
+          - { label: "Teks CTA", name: "ctaText", widget: "text" }
+          - { label: "Label Tombol CTA", name: "ctaButtonLabel", widget: "string" }
+          - { label: "Tampilkan Berita", name: "showBerita", widget: "boolean", default: true }
+          - { label: "Tampilkan Agenda", name: "showAgenda", widget: "boolean", default: true }
+          - { label: "Tampilkan Guru", name: "showGuru", widget: "boolean", default: true }
+          - { label: "Tampilkan Galeri", name: "showGaleri", widget: "boolean", default: true }
+
+      - name: "profil"
+        label: "Halaman Profil"
+        file: "src/content/pages/profil.json"
+        fields:
+          - { label: "Judul Halaman", name: "pageTitle", widget: "string" }
+          - { label: "Subjudul Halaman", name: "pageSubtitle", widget: "text" }
+          - { label: "Nama Kepala Sekolah", name: "sambutanNama", widget: "string" }
+          - { label: "Jabatan", name: "sambutanJabatan", widget: "string" }
+          - { label: "Foto Kepala Sekolah", name: "sambutanFoto", widget: "image" }
+          - { label: "Teks Sambutan", name: "sambutanText", widget: "text" }
+          - { label: "Visi", name: "visi", widget: "text" }
+          - label: "Misi"
+            name: "misi"
+            widget: "list"
+            field: { label: "Poin Misi", name: "item", widget: "string" }
+          - { label: "Sejarah", name: "sejarah", widget: "text" }
+          - label: "Komite Sekolah"
+            name: "komite"
+            widget: "list"
+            fields:
+              - { label: "Nama", name: "name", widget: "string" }
+              - { label: "Jabatan", name: "role", widget: "string" }
+
+      - name: "ppdb"
+        label: "Halaman PPDB"
+        file: "src/content/pages/ppdb.json"
+        fields:
+          - { label: "Judul Halaman", name: "pageTitle", widget: "string" }
+          - { label: "Subjudul", name: "pageSubtitle", widget: "text" }
+          - { label: "Pengantar", name: "intro", widget: "text" }
+          - label: "Syarat Pendaftaran"
+            name: "syarat"
+            widget: "list"
+            field: { label: "Syarat", name: "item", widget: "string" }
+          - label: "Jadwal"
+            name: "jadwal"
+            widget: "list"
+            fields:
+              - { label: "Tahap", name: "tahap", widget: "string" }
+              - { label: "Tanggal", name: "tanggal", widget: "string" }
+          - label: "Alur Pendaftaran"
+            name: "alur"
+            widget: "list"
+            field: { label: "Langkah", name: "item", widget: "string" }
+          - { label: "Catatan", name: "catatan", widget: "text" }
+
+      - name: "footer"
+        label: "Footer & Tim KKN"
+        file: "src/content/pages/footer.json"
+        fields:
+          - { label: "Deskripsi Singkat", name: "about", widget: "text" }
+          - label: "Tautan Cepat"
+            name: "quickLinks"
+            widget: "list"
+            fields:
+              - { label: "Teks", name: "label", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+          - { label: "Judul Bagian KKN", name: "kknTitle", widget: "string" }
+          - { label: "Teks KKN", name: "kknText", widget: "text" }
+          - { label: "Nama Kelompok KKN", name: "kknGroup", widget: "string" }
+          - { label: "Institusi / Kampus", name: "kknInstitution", widget: "string" }
+          - { label: "Tahun KKN", name: "kknYear", widget: "string" }
+          - label: "Anggota Tim KKN"
+            name: "kknMembers"
+            widget: "list"
+            field: { label: "Nama Anggota", name: "item", widget: "string" }
+          - { label: "Teks Copyright", name: "copyright", widget: "string" }
+          - { label: "Kredit Pembuat", name: "credit", widget: "string" }
+
+  # ---------------- BERITA ----------------
+  - name: "berita"
+    label: "📰 Artikel & Berita"
+    label_singular: "Berita"
+    folder: "src/content/berita"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} — {{category}}"
+    sortable_fields: ["publishDate", "title"]
+    fields:
+      - { label: "Judul Berita", name: "title", widget: "string" }
+      - { label: "Tanggal Terbit", name: "publishDate", widget: "datetime" }
+      - { label: "Kategori", name: "category", widget: "select", options: ["Akademik", "Pengumuman", "Prestasi", "Ekstrakurikuler"] }
+      - { label: "Gambar Sampul", name: "thumbnail", widget: "image", required: false }
+      - { label: "Ringkasan Singkat", name: "excerpt", widget: "text", required: false }
+      - { label: "Isi Lengkap", name: "body", widget: "markdown" }
+
+  # ---------------- GURU ----------------
+  - name: "guru"
+    label: "👩‍🏫 Direktori Guru"
+    label_singular: "Guru"
+    folder: "src/content/guru"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{name}} — {{role}}"
+    fields:
+      - { label: "Nama Lengkap + Gelar", name: "name", widget: "string" }
+      - { label: "NIP / NUPTK", name: "nip", widget: "string", required: false }
+      - { label: "Jabatan / Tugas", name: "role", widget: "string" }
+      - { label: "Foto Formal (Rasio 3:4)", name: "photo", widget: "image", required: false }
+      - { label: "Urutan Tampil", name: "order", widget: "number", default: 99, value_type: "int" }
+      - { label: "Keterangan (opsional)", name: "body", widget: "markdown", required: false }
+
+  # ---------------- AGENDA ----------------
+  - name: "agenda"
+    label: "📅 Agenda & Event"
+    label_singular: "Agenda"
+    folder: "src/content/agenda"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} — {{eventDate}}"
+    sortable_fields: ["eventDate", "title"]
+    fields:
+      - { label: "Nama Event", name: "title", widget: "string" }
+      - { label: "Tanggal Acara", name: "eventDate", widget: "date" }
+      - { label: "Lokasi Ruangan", name: "location", widget: "string", required: false }
+      - { label: "Rincian Singkat", name: "description", widget: "text", required: false }
+      - { label: "Isi (opsional)", name: "body", widget: "markdown", required: false }
+
+  # ---------------- GALERI ----------------
+  - name: "galeri"
+    label: "🖼️ Fasilitas & Galeri"
+    label_singular: "Foto Galeri"
+    folder: "src/content/galeri"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}} — {{category}}"
+    fields:
+      - { label: "Judul / Keterangan", name: "title", widget: "string" }
+      - { label: "Kategori", name: "category", widget: "string", default: "Umum" }
+      - { label: "Gambar", name: "image", widget: "image" }
+      - { label: "Urutan Tampil", name: "order", widget: "number", default: 99, value_type: "int" }
+      - { label: "Deskripsi (opsional)", name: "body", widget: "markdown", required: false }
