@@ -37,22 +37,13 @@ export default {
         container: '1200px',
       },
       boxShadow: {
-        card: '0 1px 3px rgba(15,23,42,0.06), 0 8px 24px -12px rgba(15,23,42,0.12)',
-        'card-hover': '0 10px 40px -12px rgba(4,120,87,0.28)',
-        soft: '0 1px 2px rgba(15,23,42,0.05)',
+        card: '0 1px 2px rgba(15,23,42,0.04)',
+        'card-hover': '0 4px 16px -6px rgba(15,23,42,0.14)',
+        soft: '0 1px 2px rgba(15,23,42,0.04)',
       },
       borderRadius: {
-        xl: '0.9rem',
-        '2xl': '1.25rem',
-      },
-      keyframes: {
-        'fade-up': {
-          '0%': { opacity: '0', transform: 'translateY(12px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
-      },
-      animation: {
-        'fade-up': 'fade-up 0.6s ease-out both',
+        xl: '0.75rem',
+        '2xl': '0.9rem',
       },
     },
   },
