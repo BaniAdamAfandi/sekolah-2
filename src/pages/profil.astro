@@ -13,14 +13,13 @@ const p = await getPage('profil');
   <section class="border-b border-line bg-surface">
     <div class="container-x grid grid-cols-1 gap-10 py-16 md:grid-cols-12 md:py-20">
       <div class="md:col-span-4">
-        <div class="relative p-3">
-          <div class="absolute inset-0 translate-x-3 translate-y-3 border border-brand-600"></div>
+        <div class="overflow-hidden rounded-lg border border-line">
           <img
             src={p.sambutanFoto}
             alt={p.sambutanNama}
             width="600"
             height="800"
-            class="relative aspect-[3/4] w-full object-cover"
+            class="aspect-[3/4] w-full object-cover"
           />
         </div>
       </div>

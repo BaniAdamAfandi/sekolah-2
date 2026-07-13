@@ -27,20 +27,16 @@
     @apply mx-auto w-full max-w-container px-5 sm:px-6 lg:px-8;
   }
   .eyebrow {
-    @apply inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-brand-600;
-  }
-  .eyebrow::before {
-    content: '';
-    @apply h-px w-6 bg-brand-600;
+    @apply inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-brand-700;
   }
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-200;
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 text-sm font-semibold transition-colors duration-200;
   }
   .btn-primary {
-    @apply bg-brand-600 text-white shadow-soft hover:bg-brand-700 hover:shadow-card-hover;
+    @apply bg-brand-600 text-white hover:bg-brand-700;
   }
   .btn-amber {
-    @apply bg-amber text-navy shadow-soft hover:bg-amber-light;
+    @apply bg-amber text-navy hover:bg-amber-light;
   }
   .btn-dark {
     @apply bg-navy text-white hover:bg-navy-light;
@@ -49,19 +45,35 @@
     @apply border border-line bg-white text-navy hover:border-brand-600 hover:text-brand-700;
   }
   .btn-white {
-    @apply bg-white text-brand-700 shadow-soft hover:bg-brand-50;
+    @apply bg-white text-brand-700 hover:bg-brand-50;
   }
   .card {
-    @apply rounded-2xl border border-line bg-white shadow-card transition-all duration-300;
+    @apply rounded-lg border border-line bg-white shadow-card transition-shadow duration-200;
   }
   .badge {
     @apply inline-flex items-center rounded-full bg-brand-50 px-3 py-1 text-xs font-bold uppercase tracking-wide text-brand-700;
   }
   .badge-amber {
-    @apply inline-flex items-center rounded-full bg-amber/15 px-3 py-1 text-xs font-bold uppercase tracking-wide text-amber;
+    @apply inline-flex items-center rounded-full bg-amber/25 px-3 py-1 text-xs font-bold uppercase tracking-wide text-navy;
   }
   .section {
     @apply py-16 md:py-24;
+  }
+  /* Komponen khas web sekolah: widget sidebar & judul seksi berbar */
+  .widget {
+    @apply overflow-hidden rounded-md border border-line bg-white;
+  }
+  .widget-head {
+    @apply bg-brand-600 px-4 py-2.5 text-sm font-bold uppercase tracking-wide text-white;
+  }
+  .widget-body {
+    @apply p-4;
+  }
+  .sec-head {
+    @apply mb-5 flex items-end justify-between gap-4 border-b-2 border-brand-600 pb-2;
+  }
+  .sec-head h2 {
+    @apply text-lg font-bold uppercase tracking-wide text-navy;
   }
   .prose-content {
     @apply leading-relaxed text-ink;
