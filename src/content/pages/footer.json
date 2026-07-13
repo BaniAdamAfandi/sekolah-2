@@ -10,18 +10,6 @@
     { "label": "PPDB", "url": "/ppdb" },
     { "label": "Kontak", "url": "/kontak" }
   ],
-  "kknTitle": "Dikembangkan oleh Tim KKN",
-  "kknText": "Website ini dikembangkan sebagai bagian dari program Kuliah Kerja Nyata (KKN) sebagai bentuk pengabdian kepada masyarakat di bidang digitalisasi sekolah.",
-  "kknGroup": "Kelompok KKN",
-  "kknInstitution": "Universitas Pelaksana KKN",
-  "kknYear": "2026",
-  "kknMembers": [
-    "Anggota 1",
-    "Anggota 2",
-    "Anggota 3",
-    "Anggota 4",
-    "Anggota 5"
-  ],
   "copyright": "SDN Bulukerto 01. Seluruh hak cipta dilindungi.",
-  "credit": "Dibuat dengan Astro, Decap CMS, & Vercel — 100% Gratis."
+  "credit": "Dikembangkan oleh Kelompok KKN Perpajakan FIA Universitas Brawijaya"
 }

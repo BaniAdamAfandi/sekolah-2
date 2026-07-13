@@ -1,33 +1,39 @@
 ---
 import { getPage } from '../lib/content';
+import { waLink } from '../lib/utils';
 interface Props {
   settings: Record<string, any>;
 }
 const { settings } = Astro.props;
 const footer = await getPage('footer');
 const year = new Date().getFullYear();
+const wa = waLink(settings.whatsapp);
 ---
 
-<footer class="mt-20 bg-primary text-slate-400">
+<footer class="mt-20 bg-navy text-slate-400">
   <div class="container-x grid grid-cols-1 gap-10 py-16 md:grid-cols-12">
     <!-- About -->
     <div class="md:col-span-5">
       <div class="flex items-center gap-3">
-        <img src={settings.logo} alt="Logo" width="40" height="40" class="h-10 w-10" />
-        <span class="font-display text-lg font-bold text-white">{settings.schoolName}</span>
+        <img src={settings.logo} alt="Logo" width="44" height="44" class="h-11 w-11 rounded-xl" />
+        <span class="font-display text-lg font-extrabold text-white">{settings.schoolName}</span>
       </div>
       <p class="mt-5 max-w-md text-sm leading-relaxed">{footer.about}</p>
-      <p class="mt-5 font-mono text-xs uppercase tracking-wider text-slate-500">NPSN {settings.npsn} · Akreditasi {settings.akreditasi}</p>
+      <div class="mt-6 flex flex-wrap gap-2">
+        {settings.socials?.instagram && <a href={settings.socials.instagram} target="_blank" rel="noopener" aria-label="Instagram" class="grid h-9 w-9 place-items-center rounded-full bg-white/5 hover:bg-brand-600 hover:text-white"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>}
+        {settings.socials?.facebook && <a href={settings.socials.facebook} target="_blank" rel="noopener" aria-label="Facebook" class="grid h-9 w-9 place-items-center rounded-full bg-white/5 hover:bg-brand-600 hover:text-white"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>}
+        {settings.socials?.youtube && <a href={settings.socials.youtube} target="_blank" rel="noopener" aria-label="YouTube" class="grid h-9 w-9 place-items-center rounded-full bg-white/5 hover:bg-brand-600 hover:text-white"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.5-.4-5.2a2.7 2.7 0 00-1.9-1.9C18.9 4.5 12 4.5 12 4.5s-6.9 0-8.7.4a2.7 2.7 0 00-1.9 1.9C1 8.5 1 12 1 12s0 3.5.4 5.2a2.7 2.7 0 001.9 1.9c1.8.4 8.7.4 8.7.4s6.9 0 8.7-.4a2.7 2.7 0 001.9-1.9C23 15.5 23 12 23 12zM10 15.5v-7l6 3.5z"/></svg></a>}
+      </div>
     </div>
 
     <!-- Quick links -->
     <div class="md:col-span-3">
-      <h4 class="font-mono text-xs font-bold uppercase tracking-[0.2em] text-white">Navigasi</h4>
+      <h4 class="text-sm font-bold uppercase tracking-wider text-white">Navigasi</h4>
       <ul class="mt-5 space-y-2.5 text-sm">
         {
           footer.quickLinks?.map((l: any) => (
             <li>
-              <a href={l.url} class="transition-colors hover:text-accent-light">
+              <a href={l.url} class="transition-colors hover:text-brand-200">
                 {l.label}
               </a>
             </li>
@@ -38,45 +44,19 @@ const year = new Date().getFullYear();
 
     <!-- Contact -->
     <div class="md:col-span-4">
-      <h4 class="font-mono text-xs font-bold uppercase tracking-[0.2em] text-white">Kontak</h4>
+      <h4 class="text-sm font-bold uppercase tracking-wider text-white">Kontak</h4>
       <ul class="mt-5 space-y-3 text-sm">
         <li class="leading-relaxed">{settings.address}</li>
         <li>Telp: {settings.phone}</li>
         <li>
-          Email: <a href={`mailto:${settings.email}`} class="hover:text-accent-light">{settings.email}</a>
+          Email: <a href={`mailto:${settings.email}`} class="hover:text-brand-200">{settings.email}</a>
         </li>
-        <li>
-          <a href={settings.mapsUrl} target="_blank" rel="noopener" class="text-accent-light underline underline-offset-2"
-            >Lihat di Google Maps →</a
-          >
+        <li class="flex flex-wrap gap-3 pt-1">
+          <a href={settings.mapsUrl} target="_blank" rel="noopener" class="text-brand-200 underline underline-offset-2">Google Maps →</a>
+          <a href={wa} target="_blank" rel="noopener" class="text-brand-200 underline underline-offset-2">WhatsApp →</a>
         </li>
+        <li class="pt-2 text-xs text-slate-500">NPSN {settings.npsn} · Akreditasi {settings.akreditasi}</li>
       </ul>
-    </div>
-  </div>
-
-  <!-- KKN block -->
-  <div class="border-t border-white/10">
-    <div class="container-x grid grid-cols-1 gap-8 py-12 md:grid-cols-12">
-      <div class="md:col-span-5">
-        <span class="eyebrow">{footer.kknTitle}</span>
-        <p class="mt-4 max-w-md text-sm leading-relaxed">{footer.kknText}</p>
-        <p class="mt-4 text-sm text-white">
-          {footer.kknGroup} · {footer.kknInstitution} · {footer.kknYear}
-        </p>
-      </div>
-      <div class="md:col-span-7">
-        <h4 class="font-mono text-xs font-bold uppercase tracking-[0.2em] text-white">Anggota Tim KKN</h4>
-        <ul class="mt-5 grid grid-cols-1 gap-x-6 gap-y-2 text-sm sm:grid-cols-2">
-          {
-            footer.kknMembers?.map((m: string, i: number) => (
-              <li class="flex items-baseline gap-3 border-b border-white/5 pb-2">
-                <span class="font-mono text-xs text-accent-light">{String(i + 1).padStart(2, '0')}</span>
-                <span>{m}</span>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
     </div>
   </div>
 

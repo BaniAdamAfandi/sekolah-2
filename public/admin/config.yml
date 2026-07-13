@@ -59,12 +59,21 @@ collections:
           - { label: "Eyebrow / Label Kecil Hero", name: "heroEyebrow", widget: "string" }
           - { label: "Judul Hero", name: "heroTitle", widget: "string" }
           - { label: "Deskripsi Hero", name: "heroDescription", widget: "text" }
-          - { label: "Gambar Hero", name: "heroImage", widget: "image" }
-          - { label: "Alt Gambar Hero", name: "heroImageAlt", widget: "string" }
+          - { label: "Gambar (bagian Tentang)", name: "heroImage", widget: "image" }
+          - { label: "Alt Gambar", name: "heroImageAlt", widget: "string" }
+          - { label: "Gambar Latar Hero", name: "heroBg", widget: "image" }
           - { label: "Tombol Utama - Teks", name: "primaryButtonLabel", widget: "string" }
           - { label: "Tombol Utama - URL", name: "primaryButtonUrl", widget: "string" }
           - { label: "Tombol Kedua - Teks", name: "secondaryButtonLabel", widget: "string" }
           - { label: "Tombol Kedua - URL", name: "secondaryButtonUrl", widget: "string" }
+          - label: "Kartu Akses Cepat"
+            name: "features"
+            widget: "list"
+            fields:
+              - { label: "Ikon", name: "icon", widget: "select", options: ["profil", "ppdb", "berita", "galeri"] }
+              - { label: "Judul", name: "title", widget: "string" }
+              - { label: "Deskripsi", name: "description", widget: "text" }
+              - { label: "URL", name: "url", widget: "string" }
           - label: "Statistik (4 kolom)"
             name: "stats"
             widget: "list"
@@ -132,7 +141,7 @@ collections:
           - { label: "Catatan", name: "catatan", widget: "text" }
 
       - name: "footer"
-        label: "Footer & Tim KKN"
+        label: "Footer"
         file: "src/content/pages/footer.json"
         fields:
           - { label: "Deskripsi Singkat", name: "about", widget: "text" }
@@ -142,15 +151,6 @@ collections:
             fields:
               - { label: "Teks", name: "label", widget: "string" }
               - { label: "URL", name: "url", widget: "string" }
-          - { label: "Judul Bagian KKN", name: "kknTitle", widget: "string" }
-          - { label: "Teks KKN", name: "kknText", widget: "text" }
-          - { label: "Nama Kelompok KKN", name: "kknGroup", widget: "string" }
-          - { label: "Institusi / Kampus", name: "kknInstitution", widget: "string" }
-          - { label: "Tahun KKN", name: "kknYear", widget: "string" }
-          - label: "Anggota Tim KKN"
-            name: "kknMembers"
-            widget: "list"
-            field: { label: "Nama Anggota", name: "item", widget: "string" }
           - { label: "Teks Copyright", name: "copyright", widget: "string" }
           - { label: "Kredit Pembuat", name: "credit", widget: "string" }
 

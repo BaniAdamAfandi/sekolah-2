@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#064e3b"/>
+      <stop offset="0.55" stop-color="#047857"/>
+      <stop offset="1" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="haze" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <circle cx="1300" cy="200" r="90" fill="#fef3c7" fill-opacity="0.25"/>
+  <!-- mountain layers -->
+  <path d="M0 620 L250 420 L470 600 L700 380 L980 640 L1200 440 L1420 620 L1600 500 L1600 900 L0 900 Z" fill="#064e3b" fill-opacity="0.55"/>
+  <path d="M0 720 L300 520 L560 700 L820 500 L1100 720 L1360 560 L1600 700 L1600 900 L0 900 Z" fill="#065f46" fill-opacity="0.7"/>
+  <path d="M0 800 L360 660 L680 800 L1000 660 L1320 800 L1600 700 L1600 900 L0 900 Z" fill="#052e26"/>
+  <rect width="1600" height="500" fill="url(#haze)"/>
+</svg>

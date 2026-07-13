@@ -4,10 +4,17 @@
   "heroDescription": "Institusi pendidikan dasar negeri yang mengedepankan mutu akademik, karakter, dan lingkungan belajar yang sejuk di kaki pegunungan Kota Wisata Batu.",
   "heroImage": "/images/hero.svg",
   "heroImageAlt": "Gedung dan aktivitas belajar siswa SDN Bulukerto 01",
+  "heroBg": "/images/hero-bg.svg",
   "primaryButtonLabel": "Pendaftaran PPDB 2026",
   "primaryButtonUrl": "/ppdb",
   "secondaryButtonLabel": "Profil Sekolah",
   "secondaryButtonUrl": "/profil",
+  "features": [
+    { "icon": "profil", "title": "Profil Sekolah", "description": "Visi, misi, sejarah, dan sambutan kepala sekolah.", "url": "/profil" },
+    { "icon": "ppdb", "title": "Pendaftaran (PPDB)", "description": "Syarat, jadwal, dan alur penerimaan siswa baru.", "url": "/ppdb" },
+    { "icon": "berita", "title": "Berita & Prestasi", "description": "Kabar kegiatan, pengumuman, dan capaian sekolah.", "url": "/berita" },
+    { "icon": "galeri", "title": "Fasilitas & Galeri", "description": "Dokumentasi ruang kelas, perpustakaan, dan kegiatan.", "url": "/galeri" }
+  ],
   "stats": [
     { "value": "A", "label": "Akreditasi Unggul" },
     { "value": "24+", "label": "Rombongan Belajar" },

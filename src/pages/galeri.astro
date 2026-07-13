@@ -19,8 +19,8 @@ const categories = ['Semua', ...new Set(galeri.map((g) => g.data.category))];
               type="button"
               data-cat={c}
               class:list={[
-                'gfilter-btn border px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider transition-colors',
-                c === 'Semua' ? 'border-primary bg-primary text-white' : 'border-line bg-white text-primary hover:border-primary',
+                'gfilter-btn border px-4 py-2 font-sans text-xs font-bold uppercase tracking-wider transition-colors',
+                c === 'Semua' ? 'border-navy bg-navy text-white' : 'border-line bg-white text-navy hover:border-navy',
               ]}
             >
               {c}
@@ -41,9 +41,9 @@ const categories = ['Semua', ...new Set(galeri.map((g) => g.data.category))];
                   height="600"
                   class="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <figcaption class="absolute inset-x-0 bottom-0 flex items-center justify-between bg-primary/85 px-3 py-2">
-                  <span class="font-mono text-[11px] uppercase tracking-wider text-white">{g.data.title}</span>
-                  <span class="font-mono text-[10px] uppercase tracking-wider text-accent-light">{g.data.category}</span>
+                <figcaption class="absolute inset-x-0 bottom-0 flex items-center justify-between bg-navy/85 px-3 py-2">
+                  <span class="font-sans text-[11px] uppercase tracking-wider text-white">{g.data.title}</span>
+                  <span class="font-sans text-[10px] uppercase tracking-wider text-brand-500">{g.data.category}</span>
                 </figcaption>
               </figure>
             ))}
@@ -63,11 +63,11 @@ const categories = ['Semua', ...new Set(galeri.map((g) => g.data.category))];
     btn.addEventListener('click', () => {
       const cat = btn.dataset.cat;
       buttons.forEach((b) => {
-        b.classList.remove('border-primary', 'bg-primary', 'text-white');
-        b.classList.add('border-line', 'bg-white', 'text-primary');
+        b.classList.remove('border-navy', 'bg-navy', 'text-white');
+        b.classList.add('border-line', 'bg-white', 'text-navy');
       });
-      btn.classList.add('border-primary', 'bg-primary', 'text-white');
-      btn.classList.remove('border-line', 'bg-white', 'text-primary');
+      btn.classList.add('border-navy', 'bg-navy', 'text-white');
+      btn.classList.remove('border-line', 'bg-white', 'text-navy');
       items.forEach((it) => {
         it.style.display = cat === 'Semua' || it.dataset.cat === cat ? '' : 'none';
       });
