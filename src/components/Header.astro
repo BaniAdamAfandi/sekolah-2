@@ -1,0 +1,121 @@
+---
+import { waLink } from '../lib/utils';
+interface Props {
+  settings: Record<string, any>;
+}
+const { settings } = Astro.props;
+const path = Astro.url.pathname;
+const nav = [
+  { label: 'Beranda', url: '/' },
+  { label: 'Profil', url: '/profil' },
+  { label: 'Berita', url: '/berita' },
+  { label: 'Agenda', url: '/agenda' },
+  { label: 'Guru', url: '/guru' },
+  { label: 'Galeri', url: '/galeri' },
+  { label: 'Kontak', url: '/kontak' },
+];
+const isActive = (url: string) => (url === '/' ? path === '/' : path.startsWith(url));
+const wa = waLink(settings.whatsapp);
+---
+
+<!-- Top utility bar -->
+<div class="hidden bg-navy text-slate-300 md:block">
+  <div class="container-x flex h-9 items-center justify-between text-xs">
+    <div class="flex items-center gap-5">
+      <span class="flex items-center gap-1.5">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        {settings.address}
+      </span>
+    </div>
+    <div class="flex items-center gap-4">
+      <a href={`mailto:${settings.email}`} class="flex items-center gap-1.5 hover:text-white">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+        {settings.email}
+      </a>
+      <span class="h-3 w-px bg-white/20"></span>
+      {settings.socials?.instagram && <a href={settings.socials.instagram} target="_blank" rel="noopener" aria-label="Instagram" class="hover:text-white"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>}
+      {settings.socials?.facebook && <a href={settings.socials.facebook} target="_blank" rel="noopener" aria-label="Facebook" class="hover:text-white"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>}
+      {settings.socials?.youtube && <a href={settings.socials.youtube} target="_blank" rel="noopener" aria-label="YouTube" class="hover:text-white"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.5-.4-5.2a2.7 2.7 0 00-1.9-1.9C18.9 4.5 12 4.5 12 4.5s-6.9 0-8.7.4a2.7 2.7 0 00-1.9 1.9C1 8.5 1 12 1 12s0 3.5.4 5.2a2.7 2.7 0 001.9 1.9c1.8.4 8.7.4 8.7.4s6.9 0 8.7-.4a2.7 2.7 0 001.9-1.9C23 15.5 23 12 23 12zM10 15.5v-7l6 3.5z"/></svg></a>}
+    </div>
+  </div>
+</div>
+
+<!-- Main header -->
+<header id="site-header" class="sticky top-0 z-40 border-b border-line bg-white/95 backdrop-blur transition-shadow">
+  <div class="container-x flex h-[68px] items-center justify-between gap-4">
+    <a href="/" class="flex items-center gap-3">
+      <img src={settings.logo} alt="Logo" width="44" height="44" class="h-11 w-11 rounded-xl" />
+      <span class="flex flex-col leading-tight">
+        <span class="font-display text-base font-extrabold text-navy">{settings.schoolName}</span>
+        <span class="text-[11px] font-medium text-brand-700">Kota Batu · Jawa Timur</span>
+      </span>
+    </a>
+
+    <nav class="hidden items-center gap-1 lg:flex" aria-label="Navigasi utama">
+      {
+        nav.map((item) => (
+          <a
+            href={item.url}
+            class:list={[
+              'rounded-full px-4 py-2 text-sm font-semibold transition-colors',
+              isActive(item.url) ? 'bg-brand-50 text-brand-700' : 'text-navy hover:bg-surface hover:text-brand-700',
+            ]}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a href={settings.admissionsUrl} class="btn btn-primary hidden px-5 py-2.5 text-xs sm:inline-flex">
+        {settings.admissionsLabel}
+      </a>
+      <button
+        id="nav-toggle"
+        type="button"
+        class="grid h-11 w-11 place-items-center rounded-xl border border-line text-navy lg:hidden"
+        aria-label="Buka menu"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <nav id="mobile-nav" class="hidden border-t border-line bg-white lg:hidden" aria-label="Navigasi mobile">
+    <div class="container-x flex flex-col py-3">
+      {
+        nav.map((item) => (
+          <a
+            href={item.url}
+            class:list={[
+              'rounded-xl px-4 py-3 text-sm font-semibold',
+              isActive(item.url) ? 'bg-brand-50 text-brand-700' : 'text-navy',
+            ]}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <a href={settings.admissionsUrl} class="btn btn-primary mt-2 w-full">{settings.admissionsLabel}</a>
+      <a href={wa} target="_blank" rel="noopener" class="btn btn-ghost mt-2 w-full">Hubungi WhatsApp</a>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const menu = document.getElementById('mobile-nav');
+  toggle?.addEventListener('click', () => {
+    const open = menu?.classList.toggle('hidden') === false;
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+  const header = document.getElementById('site-header');
+  const onScroll = () => header?.classList.toggle('shadow-card', window.scrollY > 8);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800">
+  <rect width="600" height="800" fill="#1E293B"/>
+  <circle cx="300" cy="300" r="120" fill="#334155"/>
+  <rect x="150" y="450" width="300" height="350" rx="20" fill="#334155"/>
+  <text x="300" y="720" font-family="monospace" font-size="20" fill="#94A3B8" text-anchor="middle">FOTO KEPALA SEKOLAH</text>
+</svg>

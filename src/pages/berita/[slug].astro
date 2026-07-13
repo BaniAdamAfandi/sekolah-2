@@ -1,0 +1,80 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { formatDate } from '../../lib/utils';
+
+export async function getStaticPaths() {
+  const berita = await getCollection('berita');
+  return berita.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+type Props = { entry: CollectionEntry<'berita'> };
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+const all = (await getCollection('berita')).sort(
+  (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
+);
+const related = all.filter((b) => b.slug !== entry.slug).slice(0, 3);
+---
+
+<BaseLayout title={entry.data.title} description={entry.data.excerpt}>
+  <article>
+    <!-- Header -->
+    <header class="border-b border-line bg-white">
+      <div class="container-x py-14 md:py-20">
+        <a href="/berita" class="font-sans text-xs font-bold uppercase tracking-wider text-brand-700 hover:underline">← Kembali ke Berita</a>
+        <div class="mt-6 flex flex-wrap items-center gap-3">
+          <span class="badge">{entry.data.category}</span>
+          <time class="font-sans text-xs uppercase tracking-wider text-ink/60">{formatDate(entry.data.publishDate)}</time>
+        </div>
+        <h1 class="mt-4 max-w-4xl text-3xl font-bold leading-tight md:text-5xl">{entry.data.title}</h1>
+      </div>
+    </header>
+
+    {
+      entry.data.thumbnail && (
+        <div class="border-b border-line bg-surface">
+          <div class="container-x py-10">
+            <img src={entry.data.thumbnail} alt={entry.data.title} class="w-full border border-line" />
+          </div>
+        </div>
+      )
+    }
+
+    <!-- Body -->
+    <div class="bg-white">
+      <div class="container-x grid grid-cols-1 gap-10 py-14 md:grid-cols-12">
+        <div class="prose-content md:col-span-8 md:col-start-3">
+          <Content />
+        </div>
+      </div>
+    </div>
+
+    <!-- Related -->
+    {
+      related.length > 0 && (
+        <section class="border-t border-line bg-surface">
+          <div class="container-x py-14 md:py-20">
+            <h2 class="text-2xl font-bold md:text-3xl">Berita Lainnya</h2>
+            <div class="mt-8 grid grid-cols-1 gap-0 border-t border-line md:grid-cols-3 md:gap-0">
+              {related.map((b, i) => (
+                <a
+                  href={`/berita/${b.slug}`}
+                  class:list={['group block bg-white p-6 transition-colors hover:bg-white/60', i !== 0 && 'border-t border-line md:border-l md:border-t-0']}
+                >
+                  <span class="badge">{b.data.category}</span>
+                  <h3 class="mt-3 text-lg font-bold leading-snug text-navy group-hover:text-brand-700">{b.data.title}</h3>
+                  <time class="mt-2 block font-sans text-xs uppercase tracking-wider text-ink/60">{formatDate(b.data.publishDate)}</time>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+  </article>
+</BaseLayout>

@@ -1,0 +1,51 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+
+const guru = (await getCollection('guru')).sort((a, b) => a.data.order - b.data.order);
+const initials = (name: string) =>
+  name
+    .replace(/[^A-Za-z\s]/g, '')
+    .split(' ')
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((n) => n[0])
+    .join('')
+    .toUpperCase();
+---
+
+<BaseLayout title="Direktori Guru & Staf" description="Direktori tenaga pendidik dan kependidikan SDN Bulukerto 01.">
+  <PageHeader eyebrow="Tenaga Pendidik" title="Direktori Guru & Staf" subtitle="Nama, jabatan, dan bidang tugas para pendidik dan tenaga kependidikan sekolah." />
+
+  <section class="bg-white">
+    <div class="container-x py-14 md:py-20">
+      {
+        guru.length > 0 ? (
+          <div class="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4">
+            {guru.map((g) => (
+              <article class="border border-line bg-white">
+                <div class="aspect-[3/4] w-full overflow-hidden">
+                  {g.data.photo ? (
+                    <img src={g.data.photo} alt={g.data.name} width="300" height="400" class="h-full w-full object-cover" />
+                  ) : (
+                    <div class="grid h-full w-full place-items-center bg-gradient-to-br from-navy to-brand-600">
+                      <span class="font-display text-4xl font-bold text-white/90">{initials(g.data.name)}</span>
+                    </div>
+                  )}
+                </div>
+                <div class="border-t border-line p-4">
+                  <h3 class="text-sm font-bold leading-snug text-navy">{g.data.name}</h3>
+                  <p class="mt-1 font-sans text-[11px] uppercase tracking-wider text-brand-700">{g.data.role}</p>
+                  {g.data.nip && <p class="mt-2 font-sans text-[10px] text-ink/60">{g.data.nip}</p>}
+                </div>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <p class="text-ink">Belum ada data guru.</p>
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>

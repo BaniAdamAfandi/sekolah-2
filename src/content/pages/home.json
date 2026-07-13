@@ -1,0 +1,38 @@
+{
+  "heroEyebrow": "SDN BULUKERTO 01 — KOTA BATU",
+  "heroTitle": "Membentuk Generasi Berkarakter di Kota Batu",
+  "heroDescription": "Institusi pendidikan dasar negeri yang mengedepankan mutu akademik, karakter, dan lingkungan belajar yang sejuk di kaki pegunungan Kota Wisata Batu.",
+  "heroImage": "/images/hero.svg",
+  "heroImageAlt": "Gedung dan aktivitas belajar siswa SDN Bulukerto 01",
+  "heroBg": "/images/hero-bg.svg",
+  "primaryButtonLabel": "Pendaftaran PPDB 2026",
+  "primaryButtonUrl": "/ppdb",
+  "secondaryButtonLabel": "Profil Sekolah",
+  "secondaryButtonUrl": "/profil",
+  "features": [
+    { "icon": "profil", "title": "Profil Sekolah", "description": "Visi, misi, sejarah, dan sambutan kepala sekolah.", "url": "/profil" },
+    { "icon": "ppdb", "title": "Pendaftaran (PPDB)", "description": "Syarat, jadwal, dan alur penerimaan siswa baru.", "url": "/ppdb" },
+    { "icon": "berita", "title": "Berita & Prestasi", "description": "Kabar kegiatan, pengumuman, dan capaian sekolah.", "url": "/berita" },
+    { "icon": "galeri", "title": "Fasilitas & Galeri", "description": "Dokumentasi ruang kelas, perpustakaan, dan kegiatan.", "url": "/galeri" }
+  ],
+  "stats": [
+    { "value": "A", "label": "Akreditasi Unggul" },
+    { "value": "24+", "label": "Rombongan Belajar" },
+    { "value": "100%", "label": "Guru Tersertifikasi" },
+    { "value": "15+", "label": "Opsi Ekstrakurikuler" }
+  ],
+  "aboutTitle": "Pendidikan Dasar yang Presisi & Berkarakter",
+  "aboutText": "SDN Bulukerto 01 berkomitmen menghadirkan layanan pendidikan yang tegas dalam mutu namun hangat dalam pembinaan. Kami memadukan kurikulum nasional dengan penguatan literasi, numerasi, dan profil pelajar Pancasila.",
+  "aboutHighlights": [
+    "Kurikulum Merdeka dengan pembelajaran berdiferensiasi",
+    "Lingkungan sekolah adiwiyata yang asri dan sejuk",
+    "Pembinaan karakter melalui kegiatan keagamaan & kebangsaan"
+  ],
+  "ctaTitle": "Bergabung Bersama Keluarga Besar SDN Bulukerto 01",
+  "ctaText": "Informasi pendaftaran peserta didik baru tahun ajaran 2026/2027 telah dibuka. Konsultasikan kebutuhan administrasi putra-putri Anda dengan tim kami.",
+  "ctaButtonLabel": "Hubungi via WhatsApp",
+  "showBerita": true,
+  "showAgenda": true,
+  "showGuru": true,
+  "showGaleri": true
+}

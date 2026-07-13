@@ -1,0 +1,76 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+
+const galeri = (await getCollection('galeri')).sort((a, b) => a.data.order - b.data.order);
+const categories = ['Semua', ...new Set(galeri.map((g) => g.data.category))];
+---
+
+<BaseLayout title="Fasilitas & Galeri" description="Dokumentasi fasilitas dan kegiatan SDN Bulukerto 01.">
+  <PageHeader eyebrow="Dokumentasi" title="Fasilitas & Galeri" subtitle="Album dokumentasi ruang kelas, perpustakaan, lapangan, dan kegiatan sekolah." />
+
+  <section class="bg-white">
+    <div class="container-x py-14 md:py-20">
+      <div class="mb-8 flex flex-wrap gap-2" id="gal-filter">
+        {
+          categories.map((c) => (
+            <button
+              type="button"
+              data-cat={c}
+              class:list={[
+                'gfilter-btn border px-4 py-2 font-sans text-xs font-bold uppercase tracking-wider transition-colors',
+                c === 'Semua' ? 'border-navy bg-navy text-white' : 'border-line bg-white text-navy hover:border-navy',
+              ]}
+            >
+              {c}
+            </button>
+          ))
+        }
+      </div>
+
+      {
+        galeri.length > 0 ? (
+          <div class="grid grid-cols-2 gap-4 md:grid-cols-3">
+            {galeri.map((g) => (
+              <figure class="gal-item group relative overflow-hidden border border-line" data-cat={g.data.category}>
+                <img
+                  src={g.data.image}
+                  alt={g.data.title}
+                  width="800"
+                  height="600"
+                  class="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <figcaption class="absolute inset-x-0 bottom-0 flex items-center justify-between bg-navy/85 px-3 py-2">
+                  <span class="font-sans text-[11px] uppercase tracking-wider text-white">{g.data.title}</span>
+                  <span class="font-sans text-[10px] uppercase tracking-wider text-brand-500">{g.data.category}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        ) : (
+          <p class="text-ink">Belum ada foto.</p>
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.gfilter-btn');
+  const items = document.querySelectorAll<HTMLElement>('.gal-item');
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const cat = btn.dataset.cat;
+      buttons.forEach((b) => {
+        b.classList.remove('border-navy', 'bg-navy', 'text-white');
+        b.classList.add('border-line', 'bg-white', 'text-navy');
+      });
+      btn.classList.add('border-navy', 'bg-navy', 'text-white');
+      btn.classList.remove('border-line', 'bg-white', 'text-navy');
+      items.forEach((it) => {
+        it.style.display = cat === 'Semua' || it.dataset.cat === cat ? '' : 'none';
+      });
+    });
+  });
+</script>

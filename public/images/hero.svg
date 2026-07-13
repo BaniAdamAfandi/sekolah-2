@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
+  <defs>
+    <linearGradient id="h" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0F172A"/>
+      <stop offset="0.55" stop-color="#134E4A"/>
+      <stop offset="1" stop-color="#0D9488"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#h)"/>
+  <g fill="none" stroke="#ffffff" stroke-opacity="0.12" stroke-width="1">
+    <line x1="0" y1="250" x2="800" y2="250"/>
+    <line x1="0" y1="500" x2="800" y2="500"/>
+    <line x1="0" y1="750" x2="800" y2="750"/>
+    <line x1="266" y1="0" x2="266" y2="1000"/>
+    <line x1="533" y1="0" x2="533" y2="1000"/>
+  </g>
+  <text x="60" y="520" font-family="'Space Grotesk',sans-serif" font-size="60" font-weight="700" fill="#ffffff">SDN</text>
+  <text x="60" y="590" font-family="'Space Grotesk',sans-serif" font-size="60" font-weight="700" fill="#ffffff">BULUKERTO 01</text>
+  <text x="62" y="640" font-family="monospace" font-size="20" fill="#5EEAD4">KOTA BATU — JAWA TIMUR</text>
+</svg>

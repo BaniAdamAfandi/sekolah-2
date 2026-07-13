@@ -1,0 +1,15 @@
+{
+  "about": "Portal resmi SDN Bulukerto 01, Kecamatan Bumiaji, Kota Batu. Menyajikan informasi akademik, agenda, dan publikasi sekolah secara terbuka bagi wali murid dan masyarakat.",
+  "quickLinks": [
+    { "label": "Beranda", "url": "/" },
+    { "label": "Profil", "url": "/profil" },
+    { "label": "Berita", "url": "/berita" },
+    { "label": "Agenda", "url": "/agenda" },
+    { "label": "Guru & Staf", "url": "/guru" },
+    { "label": "Galeri", "url": "/galeri" },
+    { "label": "PPDB", "url": "/ppdb" },
+    { "label": "Kontak", "url": "/kontak" }
+  ],
+  "copyright": "SDN Bulukerto 01. Seluruh hak cipta dilindungi.",
+  "credit": "Dikembangkan oleh Kelompok KKN Perpajakan FIA Universitas Brawijaya"
+}

@@ -1,0 +1,26 @@
+{
+  "pageTitle": "PPDB 2026 / 2027",
+  "pageSubtitle": "Penerimaan Peserta Didik Baru SDN Bulukerto 01 Kota Batu.",
+  "intro": "Penerimaan Peserta Didik Baru (PPDB) SDN Bulukerto 01 Tahun Ajaran 2026/2027 dilaksanakan secara transparan dan sesuai regulasi Dinas Pendidikan Kota Batu. Berikut informasi persyaratan, jadwal, dan alur pendaftaran.",
+  "syarat": [
+    "Fotokopi Akta Kelahiran (usia minimal 6 tahun per 1 Juli 2026).",
+    "Fotokopi Kartu Keluarga (KK).",
+    "Fotokopi KTP orang tua/wali.",
+    "Pas foto berwarna ukuran 3x4 sebanyak 2 lembar.",
+    "Fotokopi Kartu Indonesia Pintar (KIP) jika ada."
+  ],
+  "jadwal": [
+    { "tahap": "Pendaftaran", "tanggal": "1 - 15 Juni 2026" },
+    { "tahap": "Verifikasi Berkas", "tanggal": "16 - 20 Juni 2026" },
+    { "tahap": "Pengumuman", "tanggal": "25 Juni 2026" },
+    { "tahap": "Daftar Ulang", "tanggal": "26 - 30 Juni 2026" }
+  ],
+  "alur": [
+    "Menyiapkan seluruh berkas persyaratan.",
+    "Datang ke sekolah atau hubungi admin via WhatsApp.",
+    "Mengisi formulir pendaftaran.",
+    "Menyerahkan berkas untuk diverifikasi panitia.",
+    "Menunggu pengumuman dan melakukan daftar ulang."
+  ],
+  "catatan": "Untuk informasi lebih lanjut silakan hubungi panitia PPDB melalui tombol WhatsApp atau datang langsung ke kantor sekolah pada jam kerja."
+}
