@@ -46,20 +46,22 @@ const greeting = (profil.sambutanText ?? '').slice(0, 420) + ((profil.sambutanTe
         </div>
       </div>
 
-      <!-- Foto hero blob organik + chip melayang -->
-      <div class="relative mx-auto w-full max-w-md lg:max-w-none">
-        <div class="blob-mask overflow-hidden shadow-2xl shadow-brand-900/20 ring-8 ring-white">
-          <div class="relative aspect-square bg-gradient-to-br from-brand-100 via-brand-50 to-amber/20">
+      <!-- Foto hero: bingkai miring ceria + chip melayang -->
+      <div class="relative mx-auto w-full max-w-md">
+        <div class="absolute inset-0 rotate-3 rounded-[2.5rem] bg-amber"></div>
+        <div class="absolute inset-0 -rotate-2 rounded-[2.5rem] bg-brand-200/70"></div>
+        <div class="relative overflow-hidden rounded-[2.5rem] shadow-2xl shadow-brand-900/20 ring-8 ring-white">
+          <div class="relative aspect-[4/5] bg-gradient-to-br from-brand-100 via-surface to-amber/20">
             <img src={home.heroImage} alt={home.heroImageAlt} class="absolute inset-0 h-full w-full object-cover" loading="eager" decoding="async" />
           </div>
         </div>
-        <div class="absolute -bottom-4 -left-2 hidden rounded-2xl bg-white px-5 py-4 shadow-xl ring-1 ring-slate-100 sm:block">
-          <p class="font-display text-2xl font-bold text-brand-800">{settings.studentCount}</p>
-          <p class="text-xs text-slate-500">Siswa Aktif</p>
+        <div class="absolute -bottom-4 -left-4 hidden rounded-2xl bg-white px-5 py-4 shadow-xl ring-1 ring-stone-100 sm:block">
+          <p class="font-display text-2xl font-bold text-brand-700">{settings.studentCount}</p>
+          <p class="text-xs text-stone-500">Siswa Aktif</p>
         </div>
-        <div class="absolute -right-2 top-6 hidden rounded-2xl bg-amber px-5 py-4 text-center text-white shadow-xl sm:block">
+        <div class="absolute -right-4 top-6 hidden rounded-2xl bg-amber px-5 py-4 text-center text-brand-900 shadow-xl sm:block">
           <p class="font-display text-3xl font-bold leading-none">{akredShort}</p>
-          <p class="mt-1 text-xs text-amber-50">Akreditasi</p>
+          <p class="mt-1 text-xs font-semibold">Akreditasi</p>
         </div>
       </div>
     </div>
@@ -144,7 +146,7 @@ const greeting = (profil.sambutanText ?? '').slice(0, 420) + ((profil.sambutanTe
   {
     home.showAgenda && agenda.length > 0 && (
       <section class="container-x py-16">
-        <div class="rounded-3xl bg-brand-800 p-8 text-white sm:p-12">
+        <div class="rounded-3xl bg-gradient-to-br from-brand-800 to-brand-900 p-8 text-white sm:p-12">
           <div class="flex items-end justify-between gap-4">
             <div>
               <span class="text-sm font-semibold uppercase tracking-wider text-amber-light">Jadwal</span>
@@ -159,9 +161,9 @@ const greeting = (profil.sambutanText ?? '').slice(0, 420) + ((profil.sambutanTe
               const d = eventDayParts(e.data.eventDate);
               return (
                 <div class="flex gap-4 rounded-2xl bg-white/10 p-5 ring-1 ring-white/10">
-                  <div class="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-xl bg-amber text-white">
+                  <div class="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-xl bg-amber text-brand-900">
                     <span class="font-display text-2xl font-bold leading-none">{d.day}</span>
-                    <span class="text-xs uppercase">{d.month}</span>
+                    <span class="text-xs font-bold uppercase">{d.month}</span>
                   </div>
                   <div>
                     <h3 class="font-display font-bold leading-snug text-white">{e.data.title}</h3>
@@ -178,14 +180,16 @@ const greeting = (profil.sambutanText ?? '').slice(0, 420) + ((profil.sambutanTe
 
   <!-- ===================== CTA PPDB ===================== -->
   <section class="container-x pb-4">
-    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-amber to-amber-dark p-8 text-center text-white sm:p-14">
-      <h2 class="font-display text-2xl font-bold text-white sm:text-3xl">{home.ctaTitle}</h2>
-      <p class="mx-auto mt-3 max-w-xl text-amber-50">{home.ctaText}</p>
-      <div class="mt-6 flex flex-wrap justify-center gap-3">
-        <a href="/ppdb" class="inline-block rounded-full bg-white px-8 py-3.5 text-base font-semibold text-amber-dark shadow-lg transition-transform hover:-translate-y-0.5">
+    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-brand-700 to-brand-900 p-8 text-center text-white sm:p-14">
+      <div class="absolute -left-10 -top-10 h-40 w-40 rounded-full bg-amber/20 blur-2xl"></div>
+      <div class="absolute -bottom-12 -right-8 h-44 w-44 rounded-full bg-amber/15 blur-2xl"></div>
+      <h2 class="relative font-display text-2xl font-bold text-white sm:text-3xl">{home.ctaTitle}</h2>
+      <p class="relative mx-auto mt-3 max-w-xl text-brand-100">{home.ctaText}</p>
+      <div class="relative mt-6 flex flex-wrap justify-center gap-3">
+        <a href="/ppdb" class="inline-block rounded-full bg-amber px-8 py-3.5 text-base font-bold text-brand-900 shadow-lg transition-transform hover:-translate-y-0.5">
           Lihat Informasi PPDB
         </a>
-        <a href={waHref} target="_blank" rel="noopener" class="inline-block rounded-full bg-brand-800 px-8 py-3.5 text-base font-semibold text-white shadow-lg transition-transform hover:-translate-y-0.5">
+        <a href={waHref} target="_blank" rel="noopener" class="inline-block rounded-full bg-white/10 px-8 py-3.5 text-base font-semibold text-white ring-1 ring-white/30 transition-colors hover:bg-white/20">
           {home.ctaButtonLabel}
         </a>
       </div>
