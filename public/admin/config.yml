@@ -33,7 +33,10 @@ collections:
         fields:
           - { label: "Nama Sekolah", name: "schoolName", widget: "string" }
           - { label: "Tagline", name: "schoolTagline", widget: "string" }
+          - { label: "Instansi Atas (mis. Pemerintah Kota Batu)", name: "authorityTop", widget: "string" }
+          - { label: "Instansi Bawah (mis. Dinas Pendidikan)", name: "authoritySub", widget: "string" }
           - { label: "Logo", name: "logo", widget: "image" }
+          - { label: "Status Sekolah", name: "status", widget: "string", default: "Negeri" }
           - { label: "NPSN", name: "npsn", widget: "string" }
           - { label: "Akreditasi", name: "akreditasi", widget: "string" }
           - { label: "Alamat", name: "address", widget: "text" }

@@ -1,7 +1,10 @@
 {
   "schoolName": "SDN Bulukerto 01",
   "schoolTagline": "Sekolah Dasar Negeri Bulukerto 01 Kota Batu",
+  "authorityTop": "Pemerintah Kota Batu",
+  "authoritySub": "Dinas Pendidikan dan Kebudayaan",
   "logo": "/images/logo.svg",
+  "status": "Negeri",
   "npsn": "20536789",
   "akreditasi": "A (Unggul)",
   "address": "Jl. Raya Bulukerto, Kec. Bumiaji, Kota Batu, Jawa Timur 65336",
