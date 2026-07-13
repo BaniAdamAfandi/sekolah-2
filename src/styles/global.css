@@ -8,75 +8,68 @@
     -webkit-text-size-adjust: 100%;
   }
   body {
-    @apply bg-surface text-ink font-sans antialiased;
+    @apply bg-surface font-sans text-ink antialiased;
+    text-rendering: optimizeLegibility;
   }
   h1,
   h2,
   h3,
   h4 {
-    @apply font-display font-bold text-navy;
+    @apply font-display font-semibold text-ink;
+    letter-spacing: -0.01em;
     text-wrap: balance;
   }
   ::selection {
-    @apply bg-brand text-white;
+    @apply bg-brand-800 text-white;
   }
 }
 
 @layer components {
   .container-x {
-    @apply mx-auto w-full max-w-container px-5 sm:px-6 lg:px-8;
+    @apply mx-auto w-full max-w-container px-4 sm:px-6 lg:px-8;
   }
   .eyebrow {
-    @apply inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-brand-700;
+    @apply text-sm font-semibold uppercase tracking-wider text-amber-dark;
   }
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 text-sm font-semibold transition-colors duration-200;
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-200;
   }
   .btn-primary {
-    @apply bg-brand-600 text-white hover:bg-brand-700;
+    @apply bg-brand-800 text-white shadow-lg shadow-brand-800/20 hover:-translate-y-0.5 hover:bg-brand-900;
   }
   .btn-amber {
-    @apply bg-amber text-navy hover:bg-amber-light;
+    @apply bg-amber text-white shadow-lg shadow-amber/20 hover:-translate-y-0.5 hover:bg-amber-dark;
   }
   .btn-dark {
-    @apply bg-navy text-white hover:bg-navy-light;
+    @apply bg-brand-900 text-white hover:bg-brand-800;
   }
   .btn-ghost {
-    @apply border border-line bg-white text-navy hover:border-brand-600 hover:text-brand-700;
+    @apply bg-white text-brand-700 ring-1 ring-brand-200 hover:bg-brand-50;
   }
   .btn-white {
-    @apply bg-white text-brand-700 hover:bg-brand-50;
+    @apply bg-white text-brand-800 shadow-lg hover:-translate-y-0.5;
   }
   .card {
-    @apply rounded-lg border border-line bg-white shadow-card transition-shadow duration-200;
+    @apply rounded-2xl bg-white shadow-sm ring-1 ring-slate-200/70;
+  }
+  .card-lift {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .card-lift:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px -12px rgba(30, 64, 175, 0.22);
   }
   .badge {
-    @apply inline-flex items-center rounded-full bg-brand-50 px-3 py-1 text-xs font-bold uppercase tracking-wide text-brand-700;
+    @apply inline-flex items-center rounded-full bg-amber px-3 py-1 text-xs font-semibold text-white shadow-sm;
   }
-  .badge-amber {
-    @apply inline-flex items-center rounded-full bg-amber/25 px-3 py-1 text-xs font-bold uppercase tracking-wide text-navy;
-  }
-  .section {
-    @apply py-16 md:py-24;
-  }
-  /* Komponen khas web sekolah: widget sidebar & judul seksi berbar */
-  .widget {
-    @apply overflow-hidden rounded-md border border-line bg-white;
-  }
-  .widget-head {
-    @apply bg-brand-600 px-4 py-2.5 text-sm font-bold uppercase tracking-wide text-white;
-  }
-  .widget-body {
-    @apply p-4;
-  }
-  .sec-head {
-    @apply mb-5 flex items-end justify-between gap-4 border-b-2 border-brand-600 pb-2;
-  }
-  .sec-head h2 {
-    @apply text-lg font-bold uppercase tracking-wide text-navy;
+  /* Bentuk organik untuk foto hero */
+  .blob-mask {
+    border-radius: 62% 38% 46% 54% / 60% 55% 45% 40%;
   }
   .prose-content {
     @apply leading-relaxed text-ink;
+    font-size: 1.0625rem;
+    line-height: 1.75;
   }
   .prose-content h2 {
     @apply mt-8 mb-3 text-2xl;
@@ -88,18 +81,29 @@
     @apply mb-4;
   }
   .prose-content ul {
-    @apply mb-4 list-disc space-y-1 pl-5 marker:text-brand-600;
+    @apply mb-4 list-disc space-y-1.5 pl-6;
   }
   .prose-content ol {
-    @apply mb-4 list-decimal space-y-1 pl-5 marker:text-brand-600;
+    @apply mb-4 list-decimal space-y-1.5 pl-6;
   }
   .prose-content a {
     @apply text-brand-700 underline underline-offset-2;
   }
   .prose-content blockquote {
-    @apply my-6 rounded-r-xl border-l-4 border-brand-600 bg-brand-50 px-5 py-3 italic text-navy;
+    @apply my-6 border-l-4 border-amber pl-4 italic text-slate-600;
   }
   .prose-content img {
-    @apply my-6 w-full rounded-xl;
+    @apply my-6 w-full rounded-2xl;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .card-lift,
+  .card-lift:hover {
+    transition: none;
+    transform: none;
   }
 }

@@ -1,5 +1,4 @@
 ---
-import { waLink } from '../lib/utils';
 interface Props {
   settings: Record<string, any>;
 }
@@ -8,100 +7,97 @@ const path = Astro.url.pathname;
 const nav = [
   { label: 'Beranda', url: '/' },
   { label: 'Profil', url: '/profil' },
-  { label: 'Guru & Staf', url: '/guru' },
   { label: 'Berita', url: '/berita' },
+  { label: 'Guru', url: '/guru' },
   { label: 'Agenda', url: '/agenda' },
   { label: 'Galeri', url: '/galeri' },
-  { label: 'PPDB', url: '/ppdb' },
   { label: 'Kontak', url: '/kontak' },
 ];
 const isActive = (url: string) => (url === '/' ? path === '/' : path.startsWith(url));
-const wa = waLink(settings.whatsapp);
 ---
 
-<!-- Baris info atas -->
-<div class="hidden bg-navy text-slate-300 md:block">
-  <div class="container-x flex h-8 items-center justify-between text-xs">
-    <span>{settings.authorityTop} · {settings.authoritySub}</span>
-    <div class="flex items-center gap-4">
-      <a href={`mailto:${settings.email}`} class="hover:text-white">{settings.email}</a>
-      <span class="text-white/25">|</span>
-      <span>Telp. {settings.phone}</span>
-    </div>
-  </div>
-</div>
-
-<!-- Kop / masthead identitas sekolah -->
-<div class="border-b border-line bg-white">
-  <div class="container-x flex items-center gap-4 py-4">
-    <img src={settings.logo} alt="Logo {settings.schoolName}" width="60" height="60" class="h-14 w-14 shrink-0 md:h-16 md:w-16" />
-    <div class="min-w-0">
-      <p class="text-[11px] font-semibold uppercase leading-tight tracking-wide text-ink/70">{settings.authorityTop} — {settings.authoritySub}</p>
-      <a href="/" class="block truncate font-display text-xl font-extrabold leading-tight text-brand-700 hover:text-brand-800 md:text-2xl">{settings.schoolName}</a>
-      <p class="truncate text-xs text-ink/70">{settings.address}</p>
-    </div>
-    <div class="ml-auto hidden shrink-0 text-right lg:block">
-      <p class="text-[11px] uppercase tracking-wide text-ink/60">NPSN {settings.npsn}</p>
-      <p class="text-sm font-bold text-navy">Akreditasi {settings.akreditasi}</p>
-    </div>
-  </div>
-</div>
-
-<!-- Bar menu -->
-<header id="site-header" class="sticky top-0 z-40 border-b-2 border-brand-700 bg-brand-600">
-  <div class="container-x flex items-center justify-between">
-    <nav class="hidden items-stretch lg:flex" aria-label="Navigasi utama">
-      {
-        nav.map((item) => (
-          <a
-            href={item.url}
-            class:list={[
-              'border-r border-white/15 px-4 py-3 text-sm font-semibold text-white transition-colors first:border-l',
-              isActive(item.url) ? 'bg-brand-800' : 'hover:bg-brand-700',
-            ]}
-          >
-            {item.label}
-          </a>
-        ))
-      }
-    </nav>
-    <a href={wa} target="_blank" rel="noopener" class="ml-auto hidden items-center gap-2 px-4 py-3 text-sm font-semibold text-white hover:bg-brand-700 lg:flex">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.3-1.38a9.9 9.9 0 004.74 1.2c5.46 0 9.9-4.43 9.9-9.9 0-5.45-4.44-9.9-9.9-9.9zm0 18.13c-1.5 0-2.97-.4-4.25-1.16l-.3-.18-3.15.82.84-3.07-.2-.32a8.2 8.2 0 01-1.26-4.35c0-4.54 3.7-8.23 8.23-8.23 4.54 0 8.23 3.7 8.23 8.23 0 4.54-3.7 8.23-8.23 8.23z"/></svg>
-      Hubungi
+<header class="sticky top-0 z-50 border-b border-slate-200/60 bg-white/85 backdrop-blur-md">
+  <nav class="container-x flex h-[4.5rem] items-center justify-between gap-4">
+    <!-- Logo -->
+    <a href="/" class="flex shrink-0 items-center gap-3">
+      <img src={settings.logo} alt={`Logo ${settings.schoolName}`} width="40" height="40" class="h-10 w-10 rounded-xl object-contain" />
+      <span class="flex flex-col leading-none">
+        <span class="font-display text-base font-bold text-brand-800">{settings.schoolName}</span>
+        <span class="text-[11px] text-slate-500">Kota Batu, Jawa Timur</span>
+      </span>
     </a>
 
-    <!-- Mobile -->
-    <span class="py-3 font-display text-sm font-bold text-white lg:hidden">MENU</span>
+    <!-- Menu desktop -->
+    <ul class="hidden items-center gap-1 lg:flex">
+      {
+        nav.map((item) => (
+          <li>
+            <a
+              href={item.url}
+              class:list={[
+                'rounded-full px-3.5 py-2 text-sm font-medium transition-colors',
+                isActive(item.url)
+                  ? 'bg-brand-50 text-brand-800'
+                  : 'text-slate-600 hover:bg-slate-100 hover:text-brand-800',
+              ]}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <!-- CTA -->
+    <div class="hidden items-center gap-2 lg:flex">
+      <a
+        href={settings.admissionsUrl}
+        class="rounded-full bg-amber px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-transform hover:-translate-y-0.5 hover:bg-amber-dark"
+      >
+        {settings.admissionsLabel}
+      </a>
+    </div>
+
+    <!-- Tombol menu mobile -->
     <button
       id="nav-toggle"
       type="button"
-      class="grid h-10 w-10 place-items-center text-white lg:hidden"
+      class="inline-flex items-center justify-center rounded-xl p-2 text-brand-800 hover:bg-slate-100 lg:hidden"
       aria-label="Buka menu"
       aria-expanded="false"
       aria-controls="mobile-nav"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" />
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
       </svg>
     </button>
-  </div>
-
-  <nav id="mobile-nav" class="hidden border-t border-white/15 bg-brand-600 lg:hidden" aria-label="Navigasi mobile">
-    {
-      nav.map((item) => (
-        <a
-          href={item.url}
-          class:list={[
-            'block border-b border-white/15 px-4 py-3 text-sm font-semibold text-white',
-            isActive(item.url) && 'bg-brand-800',
-          ]}
-        >
-          {item.label}
-        </a>
-      ))
-    }
-    <a href={wa} target="_blank" rel="noopener" class="block px-4 py-3 text-sm font-semibold text-white">Hubungi via WhatsApp</a>
   </nav>
+
+  <!-- Menu mobile -->
+  <div id="mobile-nav" class="hidden border-t border-slate-200 bg-white lg:hidden">
+    <ul class="space-y-1 px-4 py-4">
+      {
+        nav.map((item) => (
+          <li>
+            <a
+              href={item.url}
+              class:list={[
+                'block rounded-xl px-4 py-3 text-base font-medium',
+                isActive(item.url) ? 'bg-brand-50 text-brand-800' : 'text-slate-700 hover:bg-slate-100',
+              ]}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+      <li class="pt-2">
+        <a href={settings.admissionsUrl} class="block rounded-xl bg-amber px-4 py-3 text-center text-base font-semibold text-white">
+          Info {settings.admissionsLabel}
+        </a>
+      </li>
+    </ul>
+  </div>
 </header>
 
 <script>

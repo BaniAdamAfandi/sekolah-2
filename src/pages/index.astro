@@ -1,8 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import NewsCard from '../components/NewsCard.astro';
 import { getPage, getSettings } from '../lib/content';
-import { eventDayParts, formatDate, isUpcoming, waLink } from '../lib/utils';
+import { eventDayParts, isUpcoming, waLink } from '../lib/utils';
 
 const home = await getPage('home');
 const profil = await getPage('profil');
@@ -10,181 +11,184 @@ const settings = await getSettings();
 
 const berita = (await getCollection('berita'))
   .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
-  .slice(0, 4);
+  .slice(0, 3);
 
 const agenda = (await getCollection('agenda'))
   .filter((e) => isUpcoming(e.data.eventDate))
   .sort((a, b) => a.data.eventDate.getTime() - b.data.eventDate.getTime())
-  .slice(0, 4);
-
-const galeri = (await getCollection('galeri')).sort((a, b) => a.data.order - b.data.order).slice(0, 4);
+  .slice(0, 3);
 
 const waHref = waLink(settings.whatsapp, `Halo Admin ${settings.schoolName}, saya ingin bertanya seputar PPDB.`);
-const sambutanExcerpt = (profil.sambutanText ?? '').slice(0, 320) + ((profil.sambutanText ?? '').length > 320 ? '…' : '');
+const akredShort = (settings.akreditasi ?? 'A').split(' ')[0];
+const greeting = (profil.sambutanText ?? '').slice(0, 420) + ((profil.sambutanText ?? '').length > 420 ? '…' : '');
 ---
 
 <BaseLayout>
-  <!-- Banner -->
-  <section class="border-b border-line bg-white">
-    <div class="container-x py-5">
-      <div class="relative overflow-hidden rounded-md border border-line">
-        <img src={home.heroBg} alt={home.heroImageAlt} class="h-52 w-full object-cover sm:h-64 md:h-80" />
-        <div class="absolute inset-0 flex items-end bg-gradient-to-t from-navy/80 to-transparent">
-          <div class="p-5 md:p-7">
-            <h1 class="text-2xl font-bold text-white md:text-3xl">Selamat Datang di {settings.schoolName}</h1>
-            <p class="mt-1 max-w-2xl text-sm text-slate-200 md:text-base">{home.heroDescription}</p>
+  <!-- ===================== HERO ===================== -->
+  <section class="relative overflow-hidden bg-surface">
+    <div class="absolute inset-0 -z-10">
+      <div class="absolute -top-24 right-0 h-96 w-96 rounded-full bg-amber/15 blur-3xl"></div>
+      <div class="absolute top-40 -left-20 h-80 w-80 rounded-full bg-brand-200/50 blur-3xl"></div>
+    </div>
+    <div class="container-x grid items-center gap-10 py-14 lg:grid-cols-2 lg:py-20">
+      <div>
+        <span class="inline-flex items-center gap-2 rounded-full bg-brand-50 px-4 py-1.5 text-sm font-semibold text-brand-800 ring-1 ring-brand-100">
+          <span class="h-2 w-2 rounded-full bg-amber"></span>
+          Selamat Datang di {settings.schoolName}
+        </span>
+        <h1 class="mt-5 font-display text-4xl font-bold leading-tight text-ink sm:text-5xl">
+          {home.heroTitle}
+        </h1>
+        <p class="mt-5 max-w-xl text-lg leading-relaxed text-slate-600">{home.heroDescription}</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href={home.primaryButtonUrl} class="btn btn-primary px-7 py-3.5 text-base">{home.primaryButtonLabel}</a>
+          <a href={home.secondaryButtonUrl} class="btn btn-amber px-7 py-3.5 text-base">{home.secondaryButtonLabel}</a>
+        </div>
+      </div>
+
+      <!-- Foto hero blob organik + chip melayang -->
+      <div class="relative mx-auto w-full max-w-md lg:max-w-none">
+        <div class="blob-mask overflow-hidden shadow-2xl shadow-brand-900/20 ring-8 ring-white">
+          <div class="relative aspect-square bg-gradient-to-br from-brand-100 via-brand-50 to-amber/20">
+            <img src={home.heroImage} alt={home.heroImageAlt} class="absolute inset-0 h-full w-full object-cover" loading="eager" decoding="async" />
           </div>
+        </div>
+        <div class="absolute -bottom-4 -left-2 hidden rounded-2xl bg-white px-5 py-4 shadow-xl ring-1 ring-slate-100 sm:block">
+          <p class="font-display text-2xl font-bold text-brand-800">{settings.studentCount}</p>
+          <p class="text-xs text-slate-500">Siswa Aktif</p>
+        </div>
+        <div class="absolute -right-2 top-6 hidden rounded-2xl bg-amber px-5 py-4 text-center text-white shadow-xl sm:block">
+          <p class="font-display text-3xl font-bold leading-none">{akredShort}</p>
+          <p class="mt-1 text-xs text-amber-50">Akreditasi</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Konten + Sidebar -->
-  <section class="bg-surface">
-    <div class="container-x grid grid-cols-1 gap-8 py-10 lg:grid-cols-3 lg:py-12">
-      <!-- Kolom konten -->
-      <div class="space-y-10 lg:col-span-2">
-        <!-- Sambutan -->
-        <div>
-          <div class="sec-head"><h2>Sambutan Kepala Sekolah</h2></div>
-          <div class="flex flex-col gap-5 sm:flex-row">
-            <img src={profil.sambutanFoto} alt={profil.sambutanNama} class="h-48 w-40 shrink-0 self-start rounded-md border border-line object-cover" />
+  <!-- ===================== INFO SINGKAT ===================== -->
+  <section class="container-x -mt-4">
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        home.stats?.map((s: any) => (
+          <div class="flex items-center gap-4 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200/70">
+            <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-brand-50 text-brand-800">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 012.916.52 6.003 6.003 0 01-5.395 4.972m0 0a6.726 6.726 0 01-2.749 1.35m0 0a6.772 6.772 0 01-3.044 0"/></svg>
+            </span>
             <div>
-              <p class="leading-relaxed text-ink">{sambutanExcerpt}</p>
-              <p class="mt-3 font-bold text-navy">{profil.sambutanNama}</p>
-              <p class="text-sm text-brand-700">{profil.sambutanJabatan}</p>
-              <a href="/profil" class="mt-3 inline-block text-sm font-semibold text-brand-700 hover:underline">Selengkapnya »</a>
+              <p class="font-display text-3xl font-bold text-ink">{s.value}</p>
+              <p class="text-sm text-slate-500">{s.label}</p>
             </div>
           </div>
-        </div>
+        ))
+      }
+    </div>
+  </section>
 
-        <!-- Berita -->
-        <div>
-          <div class="sec-head">
-            <h2>Berita Terbaru</h2>
-            <a href="/berita" class="text-sm font-semibold text-brand-700 hover:underline">Semua Berita »</a>
-          </div>
-          <div class="divide-y divide-line">
-            {
-              berita.map((b) => (
-                <a href={`/berita/${b.slug}`} class="group flex gap-4 py-4">
-                  <div class="h-20 w-28 shrink-0 overflow-hidden rounded border border-line bg-gray-100">
-                    {b.data.thumbnail ? (
-                      <img src={b.data.thumbnail} alt={b.data.title} class="h-full w-full object-cover" />
-                    ) : (
-                      <div class="flex h-full w-full items-center justify-center text-gray-400">
-                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-8 8"/></svg>
-                      </div>
-                    )}
-                  </div>
-                  <div class="min-w-0">
-                    <div class="flex items-center gap-2 text-xs text-ink/60">
-                      <span class="font-semibold uppercase text-brand-700">{b.data.category}</span>
-                      <span>•</span>
-                      <span>{formatDate(b.data.publishDate)}</span>
-                    </div>
-                    <h3 class="mt-1 font-bold leading-snug text-navy group-hover:text-brand-700">{b.data.title}</h3>
-                    {b.data.excerpt && <p class="mt-1 line-clamp-2 text-sm text-ink">{b.data.excerpt}</p>}
-                  </div>
-                </a>
-              ))
-            }
+  <!-- ===================== SAMBUTAN ===================== -->
+  <section class="container-x py-16">
+    <div class="grid items-center gap-10 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200/70 lg:grid-cols-3 lg:p-12">
+      <div class="lg:col-span-1">
+        <div class="mx-auto max-w-[220px] overflow-hidden rounded-3xl ring-4 ring-brand-50">
+          <div class="relative aspect-[3/4] bg-gradient-to-br from-brand-100 via-brand-50 to-amber/20">
+            <img src={profil.sambutanFoto} alt={profil.sambutanNama} class="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
           </div>
         </div>
-
-        <!-- Data sekolah -->
-        <div>
-          <div class="sec-head"><h2>Data & Statistik Sekolah</h2></div>
-          <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
-            {
-              home.stats?.map((s: any) => (
-                <div class="rounded-md border border-line bg-white p-4 text-center">
-                  <div class="text-2xl font-bold text-brand-700">{s.value}</div>
-                  <div class="mt-1 text-xs text-ink/70">{s.label}</div>
-                </div>
-              ))
-            }
-          </div>
-        </div>
+        <p class="mt-4 text-center font-display text-lg font-bold text-ink">{profil.sambutanNama}</p>
+        <p class="text-center text-sm text-slate-500">{profil.sambutanJabatan}</p>
       </div>
+      <div class="lg:col-span-2">
+        <span class="eyebrow">Sambutan</span>
+        <h2 class="mt-2 font-display text-2xl font-bold text-ink sm:text-3xl">Sambutan {profil.sambutanJabatan}</h2>
+        <p class="mt-4 leading-relaxed text-slate-600">{greeting}</p>
+        <a href="/profil" class="mt-5 inline-flex items-center gap-1.5 font-semibold text-brand-700 hover:text-brand-900">
+          Selengkapnya tentang profil sekolah
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
 
-      <!-- Sidebar -->
-      <aside class="space-y-6">
-        <!-- Profil sekolah -->
-        <div class="widget">
-          <div class="widget-head">Profil Sekolah</div>
-          <div class="widget-body">
-            <table class="w-full text-sm">
-              <tbody class="divide-y divide-line">
-                <tr><td class="py-2 text-ink/70">NPSN</td><td class="py-2 text-right font-semibold text-navy">{settings.npsn}</td></tr>
-                <tr><td class="py-2 text-ink/70">Status</td><td class="py-2 text-right font-semibold text-navy">{settings.status}</td></tr>
-                <tr><td class="py-2 text-ink/70">Akreditasi</td><td class="py-2 text-right font-semibold text-navy">{settings.akreditasi}</td></tr>
-              </tbody>
-            </table>
-            <p class="mt-3 border-t border-line pt-3 text-sm leading-relaxed text-ink">{settings.address}</p>
+  <!-- ===================== BERITA TERBARU ===================== -->
+  {
+    home.showBerita && berita.length > 0 && (
+      <section class="container-x">
+        <div class="flex items-end justify-between gap-4">
+          <div>
+            <span class="eyebrow">Kabar Sekolah</span>
+            <h2 class="mt-1 font-display text-2xl font-bold text-ink sm:text-3xl">Berita Terbaru</h2>
           </div>
+          <a href="/berita" class="hidden shrink-0 rounded-full px-4 py-2 text-sm font-semibold text-brand-700 ring-1 ring-brand-200 transition-colors hover:bg-brand-50 sm:inline-block">
+            Semua Berita
+          </a>
         </div>
+        <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {berita.map((b) => (
+            <NewsCard
+              href={`/berita/${b.slug}`}
+              title={b.data.title}
+              category={b.data.category}
+              date={b.data.publishDate}
+              excerpt={b.data.excerpt}
+              thumbnail={b.data.thumbnail}
+            />
+          ))}
+        </div>
+        <div class="mt-8 text-center sm:hidden">
+          <a href="/berita" class="inline-block rounded-full px-5 py-2.5 text-sm font-semibold text-brand-700 ring-1 ring-brand-200">Semua Berita</a>
+        </div>
+      </section>
+    )
+  }
 
-        <!-- Agenda -->
-        {
-          agenda.length > 0 && (
-            <div class="widget">
-              <div class="widget-head">Agenda Kegiatan</div>
-              <div class="widget-body space-y-3">
-                {agenda.map((e) => {
-                  const d = eventDayParts(e.data.eventDate);
-                  return (
-                    <div class="flex gap-3 border-b border-line pb-3 last:border-0 last:pb-0">
-                      <div class="grid h-12 w-12 shrink-0 place-items-center rounded bg-brand-50 text-center text-brand-700">
-                        <div>
-                          <div class="text-base font-bold leading-none">{d.day}</div>
-                          <div class="text-[10px] font-bold">{d.month}</div>
-                        </div>
-                      </div>
-                      <div class="min-w-0">
-                        <p class="text-sm font-semibold leading-snug text-navy">{e.data.title}</p>
-                        {e.data.location && <p class="mt-0.5 text-xs text-ink/60">{e.data.location}</p>}
-                      </div>
-                    </div>
-                  );
-                })}
-                <a href="/agenda" class="block text-sm font-semibold text-brand-700 hover:underline">Semua Agenda »</a>
-              </div>
+  <!-- ===================== AGENDA ===================== -->
+  {
+    home.showAgenda && agenda.length > 0 && (
+      <section class="container-x py-16">
+        <div class="rounded-3xl bg-brand-800 p-8 text-white sm:p-12">
+          <div class="flex items-end justify-between gap-4">
+            <div>
+              <span class="text-sm font-semibold uppercase tracking-wider text-amber-light">Jadwal</span>
+              <h2 class="mt-1 font-display text-2xl font-bold text-white sm:text-3xl">Agenda Mendatang</h2>
             </div>
-          )
-        }
-
-        <!-- PPDB -->
-        <div class="widget">
-          <div class="widget-head">Informasi PPDB {settings.admissionsLabel?.match(/\d{4}/)?.[0] ?? ''}</div>
-          <div class="widget-body">
-            <p class="text-sm leading-relaxed text-ink">Penerimaan Peserta Didik Baru telah dibuka. Lihat syarat, jadwal, dan alur pendaftaran.</p>
-            <div class="mt-3 flex flex-col gap-2">
-              <a href="/ppdb" class="btn btn-primary w-full py-2.5 text-xs">Info Pendaftaran</a>
-              <a href={waHref} target="_blank" rel="noopener" class="btn btn-ghost w-full py-2.5 text-xs">Tanya via WhatsApp</a>
-            </div>
+            <a href="/agenda" class="hidden shrink-0 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/20 sm:inline-block">
+              Semua Agenda
+            </a>
           </div>
-        </div>
-
-        <!-- Galeri -->
-        {
-          galeri.length > 0 && (
-            <div class="widget">
-              <div class="widget-head">Galeri Sekolah</div>
-              <div class="widget-body">
-                <div class="grid grid-cols-2 gap-2">
-                  {galeri.map((g) => (
-                    <a href="/galeri" class="block overflow-hidden rounded border border-line">
-                      <img src={g.data.image} alt={g.data.title} class="aspect-square w-full object-cover" />
-                    </a>
-                  ))}
+          <div class="mt-8 grid gap-4 sm:grid-cols-3">
+            {agenda.map((e) => {
+              const d = eventDayParts(e.data.eventDate);
+              return (
+                <div class="flex gap-4 rounded-2xl bg-white/10 p-5 ring-1 ring-white/10">
+                  <div class="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-xl bg-amber text-white">
+                    <span class="font-display text-2xl font-bold leading-none">{d.day}</span>
+                    <span class="text-xs uppercase">{d.month}</span>
+                  </div>
+                  <div>
+                    <h3 class="font-display font-bold leading-snug text-white">{e.data.title}</h3>
+                    {e.data.location && <p class="mt-1 text-sm text-brand-100">📍 {e.data.location}</p>}
+                  </div>
                 </div>
-                <a href="/galeri" class="mt-3 block text-sm font-semibold text-brand-700 hover:underline">Lihat Galeri »</a>
-              </div>
-            </div>
-          )
-        }
-      </aside>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- ===================== CTA PPDB ===================== -->
+  <section class="container-x pb-4">
+    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-amber to-amber-dark p-8 text-center text-white sm:p-14">
+      <h2 class="font-display text-2xl font-bold text-white sm:text-3xl">{home.ctaTitle}</h2>
+      <p class="mx-auto mt-3 max-w-xl text-amber-50">{home.ctaText}</p>
+      <div class="mt-6 flex flex-wrap justify-center gap-3">
+        <a href="/ppdb" class="inline-block rounded-full bg-white px-8 py-3.5 text-base font-semibold text-amber-dark shadow-lg transition-transform hover:-translate-y-0.5">
+          Lihat Informasi PPDB
+        </a>
+        <a href={waHref} target="_blank" rel="noopener" class="inline-block rounded-full bg-brand-800 px-8 py-3.5 text-base font-semibold text-white shadow-lg transition-transform hover:-translate-y-0.5">
+          {home.ctaButtonLabel}
+        </a>
+      </div>
     </div>
   </section>
 </BaseLayout>

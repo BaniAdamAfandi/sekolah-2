@@ -1,9 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
-  <rect width="800" height="600" fill="#e5e7eb"/>
-  <g transform="translate(400 280)" fill="none" stroke="#9ca3af" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="-46" y="-34" width="92" height="68" rx="8"/>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#dbeafe"/>
+      <stop offset="0.6" stop-color="#eff6ff"/>
+      <stop offset="1" stop-color="#fef3c7"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#g)"/>
+  <g transform="translate(400 280)" fill="none" stroke="#93c5fd" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="-46" y="-34" width="92" height="68" rx="10"/>
     <circle cx="-20" cy="-8" r="9"/>
     <path d="M-46 24 L-10 -6 L10 10 L26 -2 L46 20"/>
   </g>
-  <text x="400" y="346" font-family="'Plus Jakarta Sans',sans-serif" font-size="20" fill="#6b7280" text-anchor="middle" font-weight="600">Ruang Kelas</text>
+  <text x="400" y="350" font-family="Inter,sans-serif" font-size="18" fill="#60a5fa" text-anchor="middle" font-weight="600">Ruang Kelas</text>
 </svg>
