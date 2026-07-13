@@ -24,7 +24,7 @@ const categories = ['Semua', ...new Set(berita.map((b) => b.data.category))];
               data-cat={c}
               class:list={[
                 'filter-btn rounded-full px-4 py-2 text-sm font-semibold transition-colors',
-                c === 'Semua' ? 'bg-brand-600 text-white' : 'bg-white text-navy shadow-soft hover:text-brand-700',
+                c === 'Semua' ? 'bg-brand-800 text-white' : 'bg-white text-brand-700 ring-1 ring-brand-200 hover:bg-brand-50',
               ]}
             >
               {c}
@@ -61,11 +61,11 @@ const categories = ['Semua', ...new Set(berita.map((b) => b.data.category))];
     btn.addEventListener('click', () => {
       const cat = btn.dataset.cat;
       buttons.forEach((b) => {
-        b.classList.remove('bg-brand-600', 'text-white');
-        b.classList.add('bg-white', 'text-navy', 'shadow-soft');
+        b.classList.remove('bg-brand-800', 'text-white');
+        b.classList.add('bg-white', 'text-brand-700', 'ring-1', 'ring-brand-200');
       });
-      btn.classList.add('bg-brand-600', 'text-white');
-      btn.classList.remove('bg-white', 'text-navy', 'shadow-soft');
+      btn.classList.add('bg-brand-800', 'text-white');
+      btn.classList.remove('bg-white', 'text-brand-700', 'ring-1', 'ring-brand-200');
       items.forEach((it) => {
         it.style.display = cat === 'Semua' || it.dataset.cat === cat ? '' : 'none';
       });

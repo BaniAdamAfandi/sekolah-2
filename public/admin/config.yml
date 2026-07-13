@@ -39,6 +39,7 @@ collections:
           - { label: "Status Sekolah", name: "status", widget: "string", default: "Negeri" }
           - { label: "NPSN", name: "npsn", widget: "string" }
           - { label: "Akreditasi", name: "akreditasi", widget: "string" }
+          - { label: "Jumlah Siswa (mis. 200+)", name: "studentCount", widget: "string", required: false }
           - { label: "Alamat", name: "address", widget: "text" }
           - { label: "Telepon", name: "phone", widget: "string" }
           - { label: "Nomor WhatsApp (mis. 6281234567890)", name: "whatsapp", widget: "string" }
