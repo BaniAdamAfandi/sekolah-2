@@ -13,7 +13,7 @@ const { href, title, category, date, excerpt, thumbnail } = Astro.props;
 
 <article class="card card-lift group flex flex-col overflow-hidden">
   <a href={href} class="block">
-    <div class="relative aspect-video overflow-hidden bg-gradient-to-br from-brand-100 via-brand-50 to-amber/20">
+    <div class="relative aspect-video overflow-hidden bg-gradient-to-br from-brand-100 via-brand-50 to-accent/20">
       {
         thumbnail ? (
           <img src={thumbnail} alt={title} class="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
