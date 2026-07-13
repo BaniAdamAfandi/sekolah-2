@@ -62,10 +62,10 @@ const categories = ['Semua', ...new Set(berita.map((b) => b.data.category))];
       const cat = btn.dataset.cat;
       buttons.forEach((b) => {
         b.classList.remove('bg-brand-800', 'text-white');
-        b.classList.add('bg-white', 'text-brand-700', 'ring-1', 'ring-brand-200');
+        b.classList.add('bg-white', 'text-brand-700', 'ring-1', 'ring-brand-200', 'hover:bg-brand-50');
       });
       btn.classList.add('bg-brand-800', 'text-white');
-      btn.classList.remove('bg-white', 'text-brand-700', 'ring-1', 'ring-brand-200');
+      btn.classList.remove('bg-white', 'text-brand-700', 'ring-1', 'ring-brand-200', 'hover:bg-brand-50');
       items.forEach((it) => {
         it.style.display = cat === 'Semua' || it.dataset.cat === cat ? '' : 'none';
       });
