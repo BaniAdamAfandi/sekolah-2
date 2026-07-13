@@ -1,197 +1,254 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import NewsCard from '../components/NewsCard.astro';
 import { getPage, getSettings } from '../lib/content';
-import { eventDayParts, isUpcoming, waLink } from '../lib/utils';
+import { eventDayParts, formatDate, isUpcoming, waLink } from '../lib/utils';
 
 const home = await getPage('home');
 const profil = await getPage('profil');
 const settings = await getSettings();
 
-const berita = (await getCollection('berita'))
-  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
-  .slice(0, 3);
+const beritaAll = (await getCollection('berita')).sort(
+  (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
+);
+const beritaUtama = beritaAll[0];
+const beritaLain = beritaAll.slice(1, 4);
 
 const agenda = (await getCollection('agenda'))
   .filter((e) => isUpcoming(e.data.eventDate))
   .sort((a, b) => a.data.eventDate.getTime() - b.data.eventDate.getTime())
   .slice(0, 3);
 
+const galeri = (await getCollection('galeri')).sort((a, b) => a.data.order - b.data.order).slice(0, 6);
+
 const waHref = waLink(settings.whatsapp, `Halo Admin ${settings.schoolName}, saya ingin bertanya seputar PPDB.`);
 const akredShort = (settings.akreditasi ?? 'A').split(' ')[0];
 const greeting = (profil.sambutanText ?? '').slice(0, 420) + ((profil.sambutanText ?? '').length > 420 ? '…' : '');
+const heroFotos = [galeri[0]?.data.image, home.heroImage, galeri[1]?.data.image].filter(Boolean);
 ---
 
 <BaseLayout>
-  <!-- ===================== HERO ===================== -->
-  <section class="relative overflow-hidden bg-surface">
-    <div class="absolute inset-0 -z-10">
-      <div class="absolute -top-24 right-0 h-96 w-96 rounded-full bg-amber/15 blur-3xl"></div>
-      <div class="absolute top-40 -left-20 h-80 w-80 rounded-full bg-brand-200/50 blur-3xl"></div>
-    </div>
-    <div class="container-x grid items-center gap-10 py-14 lg:grid-cols-2 lg:py-20">
-      <div>
-        <span class="inline-flex items-center gap-2 rounded-full bg-brand-50 px-4 py-1.5 text-sm font-semibold text-brand-800 ring-1 ring-brand-100">
-          <span class="h-2 w-2 rounded-full bg-amber"></span>
-          Selamat Datang di {settings.schoolName}
-        </span>
-        <h1 class="mt-5 font-display text-4xl font-bold leading-tight text-ink sm:text-5xl">
-          {home.heroTitle}
-        </h1>
-        <p class="mt-5 max-w-xl text-lg leading-relaxed text-slate-600">{home.heroDescription}</p>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <a href={home.primaryButtonUrl} class="btn btn-primary px-7 py-3.5 text-base">{home.primaryButtonLabel}</a>
-          <a href={home.secondaryButtonUrl} class="btn btn-amber px-7 py-3.5 text-base">{home.secondaryButtonLabel}</a>
-        </div>
+  <!-- ===================== HERO (rata tengah + kolase foto) ===================== -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-brand-50 via-surface to-surface"></div>
+    <div class="absolute -left-24 top-10 -z-10 h-72 w-72 rounded-full bg-brand-200/40 blur-3xl"></div>
+    <div class="absolute -right-24 top-32 -z-10 h-72 w-72 rounded-full bg-accent-100/60 blur-3xl"></div>
+
+    <div class="container-x pt-14 text-center lg:pt-20">
+      <span class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-sm font-bold text-brand-700 shadow-soft ring-1 ring-brand-100">
+        🏫 Selamat Datang di {settings.schoolName}
+      </span>
+      <h1 class="mx-auto mt-5 max-w-3xl font-display text-4xl font-bold leading-tight text-ink sm:text-5xl">
+        {home.heroTitle}
+      </h1>
+      <p class="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-stone-600">{home.heroDescription}</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href={home.primaryButtonUrl} class="btn btn-primary px-7 py-3.5 text-base">{home.primaryButtonLabel}</a>
+        <a href={home.secondaryButtonUrl} class="btn btn-accent px-7 py-3.5 text-base">{home.secondaryButtonLabel}</a>
       </div>
 
-      <!-- Foto hero: bingkai miring ceria + chip melayang -->
-      <div class="relative mx-auto w-full max-w-md">
-        <div class="absolute inset-0 rotate-3 rounded-[2.5rem] bg-amber"></div>
-        <div class="absolute inset-0 -rotate-2 rounded-[2.5rem] bg-brand-200/70"></div>
-        <div class="relative overflow-hidden rounded-[2.5rem] shadow-2xl shadow-brand-900/20 ring-8 ring-white">
-          <div class="relative aspect-[4/5] bg-gradient-to-br from-brand-100 via-surface to-amber/20">
-            <img src={home.heroImage} alt={home.heroImageAlt} class="absolute inset-0 h-full w-full object-cover" loading="eager" decoding="async" />
+      <!-- Kolase tiga foto -->
+      <div class="relative mx-auto mt-12 flex max-w-4xl items-end justify-center gap-4 sm:gap-6">
+        <div class="hidden w-1/4 -rotate-3 overflow-hidden rounded-t-full rounded-b-3xl ring-4 ring-white shadow-xl sm:block">
+          <div class="relative aspect-[3/4] bg-gradient-to-br from-brand-100 to-accent-100">
+            {heroFotos[0] && <img src={heroFotos[0]} alt="Kegiatan sekolah" class="absolute inset-0 h-full w-full object-cover" loading="eager" decoding="async" />}
           </div>
         </div>
-        <div class="absolute -bottom-4 -left-4 hidden rounded-2xl bg-white px-5 py-4 shadow-xl ring-1 ring-stone-100 sm:block">
-          <p class="font-display text-2xl font-bold text-brand-700">{settings.studentCount}</p>
-          <p class="text-xs text-stone-500">Siswa Aktif</p>
+        <div class="relative w-full max-w-md overflow-hidden rounded-t-[3rem] rounded-b-3xl ring-8 ring-white shadow-2xl shadow-brand-900/15 sm:w-1/2">
+          <div class="relative aspect-[4/3] bg-gradient-to-br from-brand-100 via-surface to-accent-100">
+            <img src={heroFotos[1] ?? home.heroImage} alt={home.heroImageAlt} class="absolute inset-0 h-full w-full object-cover" loading="eager" decoding="async" />
+          </div>
+          <span class="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1.5 text-xs font-bold text-brand-700 shadow-sm backdrop-blur">
+            {settings.studentCount} Siswa Aktif
+          </span>
+          <span class="absolute right-3 top-3 rounded-full bg-accent px-3 py-1.5 text-xs font-bold text-white shadow-sm">
+            Akreditasi {akredShort}
+          </span>
         </div>
-        <div class="absolute -right-4 top-6 hidden rounded-2xl bg-amber px-5 py-4 text-center text-brand-900 shadow-xl sm:block">
-          <p class="font-display text-3xl font-bold leading-none">{akredShort}</p>
-          <p class="mt-1 text-xs font-semibold">Akreditasi</p>
+        <div class="hidden w-1/4 rotate-3 overflow-hidden rounded-t-full rounded-b-3xl ring-4 ring-white shadow-xl sm:block">
+          <div class="relative aspect-[3/4] bg-gradient-to-br from-accent-100 to-brand-100">
+            {heroFotos[2] && <img src={heroFotos[2]} alt="Kegiatan siswa" class="absolute inset-0 h-full w-full object-cover" loading="eager" decoding="async" />}
+          </div>
         </div>
       </div>
+    </div>
+
+    <!-- Pita statistik bergelombang -->
+    <div class="-mt-10">
+      <svg class="block w-full text-brand-600" viewBox="0 0 1440 60" fill="currentColor" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,40 C240,80 480,0 720,20 C960,40 1200,70 1440,30 L1440,60 L0,60 Z"></path>
+      </svg>
+      <div class="bg-brand-600 pb-10 pt-4 text-white">
+        <div class="container-x grid grid-cols-2 gap-x-4 gap-y-6 text-center md:grid-cols-4">
+          {
+            home.stats?.map((s: any) => (
+              <div>
+                <p class="font-display text-3xl font-bold sm:text-4xl">{s.value}</p>
+                <p class="mt-0.5 text-sm text-brand-100">{s.label}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+      <svg class="block w-full rotate-180 text-brand-600" viewBox="0 0 1440 60" fill="currentColor" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,40 C240,80 480,0 720,20 C960,40 1200,70 1440,30 L1440,60 L0,60 Z"></path>
+      </svg>
     </div>
   </section>
 
-  <!-- ===================== INFO SINGKAT ===================== -->
-  <section class="container-x -mt-4">
-    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      {
-        home.stats?.map((s: any) => (
-          <div class="flex items-center gap-4 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200/70">
-            <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-brand-50 text-brand-800">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 012.916.52 6.003 6.003 0 01-5.395 4.972m0 0a6.726 6.726 0 01-2.749 1.35m0 0a6.772 6.772 0 01-3.044 0"/></svg>
-            </span>
-            <div>
-              <p class="font-display text-3xl font-bold text-ink">{s.value}</p>
-              <p class="text-sm text-slate-500">{s.label}</p>
+  <!-- ===================== SAMBUTAN (foto lengkung) ===================== -->
+  <section class="container-x py-12">
+    <div class="grid items-center gap-10 lg:grid-cols-5">
+      <div class="lg:col-span-2">
+        <div class="relative mx-auto max-w-[260px]">
+          <div class="absolute -bottom-3 -right-3 h-full w-full rounded-t-full rounded-b-[2rem] bg-accent-100"></div>
+          <div class="relative overflow-hidden rounded-t-full rounded-b-[2rem] ring-4 ring-white shadow-xl">
+            <div class="relative aspect-[3/4] bg-gradient-to-br from-brand-100 via-surface to-accent-100">
+              <img src={profil.sambutanFoto} alt={profil.sambutanNama} class="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
             </div>
           </div>
-        ))
-      }
-    </div>
-  </section>
-
-  <!-- ===================== SAMBUTAN ===================== -->
-  <section class="container-x py-16">
-    <div class="grid items-center gap-10 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-200/70 lg:grid-cols-3 lg:p-12">
-      <div class="lg:col-span-1">
-        <div class="mx-auto max-w-[220px] overflow-hidden rounded-3xl ring-4 ring-brand-50">
-          <div class="relative aspect-[3/4] bg-gradient-to-br from-brand-100 via-brand-50 to-amber/20">
-            <img src={profil.sambutanFoto} alt={profil.sambutanNama} class="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
-          </div>
         </div>
-        <p class="mt-4 text-center font-display text-lg font-bold text-ink">{profil.sambutanNama}</p>
-        <p class="text-center text-sm text-slate-500">{profil.sambutanJabatan}</p>
       </div>
-      <div class="lg:col-span-2">
-        <span class="eyebrow">Sambutan</span>
-        <h2 class="mt-2 font-display text-2xl font-bold text-ink sm:text-3xl">Sambutan {profil.sambutanJabatan}</h2>
-        <p class="mt-4 leading-relaxed text-slate-600">{greeting}</p>
-        <a href="/profil" class="mt-5 inline-flex items-center gap-1.5 font-semibold text-brand-700 hover:text-brand-900">
-          Selengkapnya tentang profil sekolah
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
-        </a>
+      <div class="text-center lg:col-span-3 lg:text-left">
+        <span class="eyebrow">Sambutan Kepala Sekolah</span>
+        <h2 class="mt-2 font-display text-2xl font-bold text-ink sm:text-3xl">Salam Hangat dari {settings.schoolName}</h2>
+        <p class="mt-4 leading-relaxed text-stone-600">{greeting}</p>
+        <p class="mt-4 font-display text-lg font-bold text-brand-700">{profil.sambutanNama}</p>
+        <p class="text-sm text-stone-500">{profil.sambutanJabatan}</p>
+        <a href="/profil" class="btn btn-ghost mt-6">Profil Lengkap Sekolah</a>
       </div>
     </div>
   </section>
 
-  <!-- ===================== BERITA TERBARU ===================== -->
+  <!-- ===================== BERITA (1 utama + daftar) ===================== -->
   {
-    home.showBerita && berita.length > 0 && (
-      <section class="container-x">
-        <div class="flex items-end justify-between gap-4">
-          <div>
+    home.showBerita && beritaUtama && (
+      <section class="bg-white py-14">
+        <div class="container-x">
+          <div class="text-center">
             <span class="eyebrow">Kabar Sekolah</span>
-            <h2 class="mt-1 font-display text-2xl font-bold text-ink sm:text-3xl">Berita Terbaru</h2>
+            <h2 class="mt-1 font-display text-2xl font-bold text-ink sm:text-3xl">Berita & Kegiatan Terbaru</h2>
           </div>
-          <a href="/berita" class="hidden shrink-0 rounded-full px-4 py-2 text-sm font-semibold text-brand-700 ring-1 ring-brand-200 transition-colors hover:bg-brand-50 sm:inline-block">
-            Semua Berita
-          </a>
-        </div>
-        <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {berita.map((b) => (
-            <NewsCard
-              href={`/berita/${b.slug}`}
-              title={b.data.title}
-              category={b.data.category}
-              date={b.data.publishDate}
-              excerpt={b.data.excerpt}
-              thumbnail={b.data.thumbnail}
-            />
-          ))}
-        </div>
-        <div class="mt-8 text-center sm:hidden">
-          <a href="/berita" class="inline-block rounded-full px-5 py-2.5 text-sm font-semibold text-brand-700 ring-1 ring-brand-200">Semua Berita</a>
+          <div class="mt-10 grid gap-8 lg:grid-cols-2">
+            <!-- Berita utama -->
+            <a href={`/berita/${beritaUtama.slug}`} class="card card-lift group overflow-hidden">
+              <div class="relative aspect-video bg-gradient-to-br from-brand-100 via-surface to-accent-100">
+                {beritaUtama.data.thumbnail ? (
+                  <img src={beritaUtama.data.thumbnail} alt={beritaUtama.data.title} class="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+                ) : (
+                  <div class="absolute inset-0 flex items-center justify-center text-brand-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5z" /></svg>
+                  </div>
+                )}
+                <span class="badge absolute left-4 top-4">{beritaUtama.data.category}</span>
+              </div>
+              <div class="p-6">
+                <time class="text-xs font-semibold text-stone-400">{formatDate(beritaUtama.data.publishDate)}</time>
+                <h3 class="mt-2 font-display text-xl font-bold leading-snug text-ink transition-colors group-hover:text-brand-700 sm:text-2xl">
+                  {beritaUtama.data.title}
+                </h3>
+                {beritaUtama.data.excerpt && <p class="mt-2 line-clamp-3 leading-relaxed text-stone-600">{beritaUtama.data.excerpt}</p>}
+              </div>
+            </a>
+
+            <!-- Daftar berita ringkas -->
+            <div class="flex flex-col gap-4">
+              {beritaLain.map((b) => (
+                <a href={`/berita/${b.slug}`} class="card card-lift group flex gap-4 p-4">
+                  <div class="relative h-24 w-32 shrink-0 overflow-hidden rounded-xl bg-gradient-to-br from-brand-100 to-accent-100">
+                    {b.data.thumbnail && <img src={b.data.thumbnail} alt={b.data.title} class="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />}
+                  </div>
+                  <div class="min-w-0">
+                    <div class="flex flex-wrap items-center gap-2 text-xs">
+                      <span class="font-bold uppercase tracking-wide text-accent">{b.data.category}</span>
+                      <span class="text-stone-400">{formatDate(b.data.publishDate)}</span>
+                    </div>
+                    <h3 class="mt-1.5 font-display text-base font-bold leading-snug text-ink transition-colors group-hover:text-brand-700">
+                      {b.data.title}
+                    </h3>
+                  </div>
+                </a>
+              ))}
+              <a href="/berita" class="btn btn-ghost self-start">Lihat Semua Berita</a>
+            </div>
+          </div>
         </div>
       </section>
     )
   }
 
-  <!-- ===================== AGENDA ===================== -->
+  <!-- ===================== AGENDA (daftar terang) ===================== -->
   {
     home.showAgenda && agenda.length > 0 && (
-      <section class="container-x py-16">
-        <div class="rounded-3xl bg-gradient-to-br from-brand-800 to-brand-900 p-8 text-white sm:p-12">
-          <div class="flex items-end justify-between gap-4">
-            <div>
-              <span class="text-sm font-semibold uppercase tracking-wider text-amber-light">Jadwal</span>
-              <h2 class="mt-1 font-display text-2xl font-bold text-white sm:text-3xl">Agenda Mendatang</h2>
-            </div>
-            <a href="/agenda" class="hidden shrink-0 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/20 sm:inline-block">
-              Semua Agenda
-            </a>
+      <section class="container-x py-14">
+        <div class="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <span class="eyebrow">Jangan Terlewat</span>
+            <h2 class="mt-1 font-display text-2xl font-bold text-ink sm:text-3xl">Agenda Sekolah</h2>
           </div>
-          <div class="mt-8 grid gap-4 sm:grid-cols-3">
-            {agenda.map((e) => {
-              const d = eventDayParts(e.data.eventDate);
-              return (
-                <div class="flex gap-4 rounded-2xl bg-white/10 p-5 ring-1 ring-white/10">
-                  <div class="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-xl bg-amber text-brand-900">
-                    <span class="font-display text-2xl font-bold leading-none">{d.day}</span>
-                    <span class="text-xs font-bold uppercase">{d.month}</span>
-                  </div>
-                  <div>
-                    <h3 class="font-display font-bold leading-snug text-white">{e.data.title}</h3>
-                    {e.data.location && <p class="mt-1 text-sm text-brand-100">📍 {e.data.location}</p>}
+          <a href="/agenda" class="btn btn-ghost">Semua Agenda</a>
+        </div>
+        <div class="mt-8 space-y-4">
+          {agenda.map((e) => {
+            const d = eventDayParts(e.data.eventDate);
+            return (
+              <div class="card flex items-center gap-5 p-5 sm:p-6">
+                <div class="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-full bg-accent-50 text-accent-dark ring-2 ring-accent-100">
+                  <span class="font-display text-xl font-bold leading-none">{d.day}</span>
+                  <span class="text-[11px] font-bold uppercase">{d.month}</span>
+                </div>
+                <div class="min-w-0 flex-1">
+                  <h3 class="font-display text-lg font-bold leading-snug text-ink">{e.data.title}</h3>
+                  <div class="mt-1 flex flex-wrap gap-x-4 gap-y-0.5 text-sm text-stone-500">
+                    {e.data.location && <span>📍 {e.data.location}</span>}
+                    <span>🗓️ {d.day} {d.month} {d.year}</span>
                   </div>
                 </div>
-              );
-            })}
-          </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+    )
+  }
+
+  <!-- ===================== GALERI STRIP ===================== -->
+  {
+    home.showGaleri && galeri.length > 0 && (
+      <section class="overflow-hidden py-6">
+        <div class="container-x text-center">
+          <span class="eyebrow">Galeri</span>
+          <h2 class="mt-1 font-display text-2xl font-bold text-ink sm:text-3xl">Keceriaan di Sekolah Kami</h2>
+        </div>
+        <div class="mt-8 flex gap-4 overflow-x-auto px-4 pb-4 sm:px-8 [scrollbar-width:thin]">
+          {galeri.map((g, i) => (
+            <a href="/galeri" class:list={['block w-56 shrink-0 overflow-hidden shadow-md ring-4 ring-white', i % 2 === 0 ? 'rounded-t-[2.5rem] rounded-b-2xl' : 'rounded-b-[2.5rem] rounded-t-2xl']}>
+              <img src={g.data.image} alt={g.data.title} class="aspect-square w-full object-cover" loading="lazy" decoding="async" />
+            </a>
+          ))}
         </div>
       </section>
     )
   }
 
   <!-- ===================== CTA PPDB ===================== -->
-  <section class="container-x pb-4">
-    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-brand-700 to-brand-900 p-8 text-center text-white sm:p-14">
-      <div class="absolute -left-10 -top-10 h-40 w-40 rounded-full bg-amber/20 blur-2xl"></div>
-      <div class="absolute -bottom-12 -right-8 h-44 w-44 rounded-full bg-amber/15 blur-2xl"></div>
-      <h2 class="relative font-display text-2xl font-bold text-white sm:text-3xl">{home.ctaTitle}</h2>
-      <p class="relative mx-auto mt-3 max-w-xl text-brand-100">{home.ctaText}</p>
-      <div class="relative mt-6 flex flex-wrap justify-center gap-3">
-        <a href="/ppdb" class="inline-block rounded-full bg-amber px-8 py-3.5 text-base font-bold text-brand-900 shadow-lg transition-transform hover:-translate-y-0.5">
-          Lihat Informasi PPDB
-        </a>
-        <a href={waHref} target="_blank" rel="noopener" class="inline-block rounded-full bg-white/10 px-8 py-3.5 text-base font-semibold text-white ring-1 ring-white/30 transition-colors hover:bg-white/20">
-          {home.ctaButtonLabel}
-        </a>
+  <section class="container-x py-12">
+    <div class="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-brand-500 to-brand-600 p-8 text-white sm:p-12">
+      <div class="absolute -right-12 -top-12 h-48 w-48 rounded-full bg-white/10"></div>
+      <div class="absolute -bottom-16 right-24 h-40 w-40 rounded-full bg-accent/25"></div>
+      <div class="relative grid items-center gap-6 lg:grid-cols-3">
+        <div class="lg:col-span-2">
+          <h2 class="font-display text-2xl font-bold text-white sm:text-3xl">{home.ctaTitle}</h2>
+          <p class="mt-3 max-w-xl text-brand-50">{home.ctaText}</p>
+        </div>
+        <div class="flex flex-wrap gap-3 lg:justify-end">
+          <a href="/ppdb" class="inline-block rounded-full bg-white px-7 py-3.5 text-base font-bold text-brand-600 shadow-lg transition-transform hover:-translate-y-0.5">
+            Info PPDB
+          </a>
+          <a href={waHref} target="_blank" rel="noopener" class="inline-block rounded-full bg-accent px-7 py-3.5 text-base font-bold text-white shadow-lg transition-transform hover:-translate-y-0.5 hover:bg-accent-dark">
+            WhatsApp Kami
+          </a>
+        </div>
       </div>
     </div>
   </section>
