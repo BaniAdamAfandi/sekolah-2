@@ -28,6 +28,23 @@ export function waLink(number: string, text = ''): string {
   return `https://wa.me/${clean}${q}`;
 }
 
+// Format nomor WA agar mudah dibaca, mis. "6281234567890" -> "+62 812-3456-7890"
+export function waDisplay(number: string): string {
+  const clean = (number || '').replace(/[^0-9]/g, '');
+  if (!clean) return '';
+  let rest = clean;
+  let cc = '';
+  if (rest.startsWith('62')) {
+    cc = '+62 ';
+    rest = rest.slice(2);
+  }
+  // Pola nomor seluler Indonesia: 3-4-4 (mis. 812-3456-7890)
+  const head = rest.slice(0, 3);
+  const tail = rest.slice(3);
+  const tailGroups = tail ? (tail.match(/.{1,4}/g) ?? [tail]) : [];
+  return (cc + [head, ...tailGroups].filter(Boolean).join('-')).trim();
+}
+
 export function isUpcoming(date: Date | string): boolean {
   const d = typeof date === 'string' ? new Date(date) : date;
   const now = new Date();

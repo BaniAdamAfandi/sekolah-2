@@ -55,6 +55,7 @@ collections:
               - { label: "Instagram", name: "instagram", widget: "string", required: false }
               - { label: "Facebook", name: "facebook", widget: "string", required: false }
               - { label: "YouTube", name: "youtube", widget: "string", required: false }
+              - { label: "TikTok", name: "tiktok", widget: "string", required: false }
 
       - name: "home"
         label: "Halaman Beranda"
