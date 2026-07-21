@@ -43,7 +43,7 @@ const categories = ['Semua', ...new Set(galeri.map((g) => g.data.category))];
                 />
                 <figcaption class="absolute inset-x-0 bottom-0 flex items-center justify-between bg-navy/85 px-3 py-2">
                   <span class="font-sans text-[11px] uppercase tracking-wider text-white">{g.data.title}</span>
-                  <span class="font-sans text-[10px] uppercase tracking-wider text-brand-500">{g.data.category}</span>
+                  <span class="font-sans text-[10px] font-semibold uppercase tracking-wider text-accent-light">{g.data.category}</span>
                 </figcaption>
               </figure>
             ))}
