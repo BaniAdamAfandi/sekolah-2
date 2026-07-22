@@ -27,7 +27,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       // Tandai JS aktif sedini mungkin agar animasi reveal tidak menyembunyikan konten saat JS mati.
       document.documentElement.classList.add('js');
     </script>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href={settings.logo} />
     <title>{pageTitle}</title>
     <meta name="description" content={pageDesc} />
     <link rel="canonical" href={canonical} />
