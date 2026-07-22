@@ -29,7 +29,7 @@ const { href, title, category, date, excerpt, thumbnail } = Astro.props;
     </div>
   </a>
   <div class="flex flex-1 flex-col p-5">
-    <time class="text-xs font-medium text-slate-400">{formatDate(date)}</time>
+    <time class="text-xs font-medium text-slate-500">{formatDate(date)}</time>
     <h3 class="mt-2 font-display text-lg font-bold leading-snug text-ink">
       <a href={href} class="transition-colors group-hover:text-brand-800">{title}</a>
     </h3>
