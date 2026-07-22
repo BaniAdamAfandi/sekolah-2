@@ -1,6 +1,6 @@
 {
   "primaryButtonLabel": "Pendaftaran PPDB 2026",
-  "heroImage": "/images/hero.svg",
+  "heroImage": "/images/uploads/logo_sekolah-removebg-preview.png",
   "heroDescription": "Institusi pendidikan dasar negeri yang mengedepankan mutu akademik, karakter, dan lingkungan belajar yang sejuk di kaki pegunungan Kota Wisata Batu.",
   "showBerita": true,
   "showGaleri": true,
@@ -16,7 +16,7 @@
   ],
   "showGuru": true,
   "secondaryButtonLabel": "Profil Sekolah",
-  "heroEyebrow": "SDN BULUKERTO 01 — KOTA BATU",
+  "heroEyebrow": "SDN BULUKERTO 01 ",
   "ctaButtonLabel": "Hubungi via WhatsApp",
   "aboutText": "SDN Bulukerto 01 berkomitmen menghadirkan layanan pendidikan yang tegas dalam mutu namun hangat dalam pembinaan. Kami memadukan kurikulum nasional dengan penguatan literasi, numerasi, dan profil pelajar Pancasila.",
   "primaryButtonUrl": "/ppdb",
