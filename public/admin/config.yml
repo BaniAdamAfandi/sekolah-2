@@ -7,7 +7,7 @@ backend:
   repo: BaniAdamAfandi/sekolah-2 # Ganti bila nama user/repo GitHub berbeda
   branch: main # Branch yang di-deploy Vercel
   # OAuth ditangani oleh serverless function bawaan di /api (lihat README).
-  base_url: https://sekolah-2.vercel.app/ # Ganti dengan domain Vercel final
+  base_url: https://sekolah-2.vercel.app # Ganti dengan domain Vercel final
   auth_endpoint: /api/auth
 
 # Simpan draft langsung ke repo (tanpa PR). Ubah ke "simple" bila mau editorial workflow.
