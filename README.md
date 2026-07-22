@@ -66,7 +66,7 @@ Agar guru bisa login ke `/admin` dan menyimpan perubahan langsung ke GitHub:
    - `public/admin/config.yml` → `base_url` = domain Vercel Anda, dan `repo` = `owner/nama-repo` GitHub Anda.
    - `astro.config.mjs` → `site` = domain Vercel Anda.
 
-4. Buka `https://DOMAIN-ANDA.vercel.app/admin`, klik **Login with GitHub**. Selesai — setiap penyimpanan otomatis commit ke GitHub dan Vercel me-redeploy dalam < 2 menit.
+4. Buka `https://DOMAIN-ANDA.vercel.app/admin/`, klik **Login with GitHub**. Selesai — setiap penyimpanan otomatis commit ke GitHub dan Vercel me-redeploy dalam < 2 menit.
 
 > Akun GitHub yang login harus punya akses tulis ke repository ini.
 
