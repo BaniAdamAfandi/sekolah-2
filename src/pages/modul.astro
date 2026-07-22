@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+
+const resources = [
+  {
+    title: 'Modul',
+    description: 'Materi modul pembelajaran untuk kegiatan edukasi.',
+    url: 'https://drive.google.com/file/d/1GzOhinCzcyoSQIw7IpUjpZKWDpkovv7b/view?usp=drive_link',
+  },
+  {
+    title: 'PPT',
+    description: 'Slide presentasi pendamping materi pembelajaran.',
+    url: 'https://docs.google.com/presentation/d/1KwQYeVFxQy5iuMsV9dvhVwiDFqZDd1Mm/edit?usp=drive_link&ouid=105270672216196466413&rtpof=true&sd=true',
+  },
+  {
+    title: 'Template Menabung',
+    description: 'Template praktik menabung yang dapat digunakan siswa.',
+    url: 'https://drive.google.com/file/d/1LBe8jXah87JZyI9MnQaGKDTamTye1MEy/view?usp=drive_link',
+  },
+];
+---
+
+<BaseLayout title="Modul" description="Kumpulan modul, presentasi, dan template pembelajaran SDN Bulukerto 01.">
+  <PageHeader eyebrow="Materi Pembelajaran" title="Modul" subtitle="Unduh dan gunakan materi pendukung pembelajaran berikut." />
+
+  <section class="container-x py-12 sm:py-16">
+    <div class="grid gap-6 md:grid-cols-3">
+      {
+        resources.map((resource) => (
+          <a href={resource.url} target="_blank" rel="noopener noreferrer" class="card card-lift group flex flex-col p-6">
+            <span class="badge self-start">Google Drive</span>
+            <h2 class="mt-5 font-display text-2xl font-bold text-ink transition-colors group-hover:text-brand-700">
+              {resource.title}
+            </h2>
+            <p class="mt-2 flex-1 leading-relaxed text-slate-600">{resource.description}</p>
+            <span class="mt-6 inline-flex items-center gap-2 text-sm font-bold text-brand-700">
+              Buka materi <span aria-hidden="true">↗</span>
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>
