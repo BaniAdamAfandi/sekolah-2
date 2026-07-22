@@ -1,11 +1,22 @@
 {
-  "pageTitle": "Profil Institusi",
   "pageSubtitle": "Sejarah, visi, misi, dan tata kelola SDN Bulukerto 01 Kota Batu.",
-  "sambutanNama": "Kepala SDN Bulukerto 01",
-  "sambutanJabatan": "Kepala Sekolah",
-  "sambutanFoto": "/images/kepala-sekolah.svg",
-  "sambutanText": "Assalamu'alaikum warahmatullahi wabarakatuh. Selamat datang di portal resmi SDN Bulukerto 01. Kami hadir sebagai lembaga pendidikan dasar negeri yang berkomitmen membentuk peserta didik yang cerdas, berkarakter, dan berakhlak mulia. Melalui platform ini, kami berupaya menghadirkan transparansi informasi bagi seluruh wali murid dan masyarakat. Semoga sinergi antara sekolah, keluarga, dan lingkungan mampu mengantarkan putra-putri kita menjadi generasi unggul kebanggaan Kota Batu.",
   "visi": "Terwujudnya peserta didik yang beriman, bertakwa, berprestasi, berkarakter, dan peduli terhadap lingkungan.",
+  "pageTitle": "Profil Institusi",
+  "sejarah": "SDN Bulukerto 01 merupakan sekolah dasar negeri yang berlokasi di wilayah Bulukerto, Kecamatan Bumiaji, Kota Batu. Berdiri sejak puluhan tahun silam, sekolah ini telah menjadi bagian penting dalam memajukan pendidikan dasar di kawasan pegunungan Kota Batu, dan terus berbenah mengikuti perkembangan kurikulum serta teknologi pembelajaran.",
+  "komite": [
+    {
+      "name": "Ketua Komite Sekolah",
+      "role": "Ketua Komite"
+    },
+    {
+      "name": "Sekretaris Komite",
+      "role": "Sekretaris"
+    },
+    {
+      "name": "Bendahara Komite",
+      "role": "Bendahara"
+    }
+  ],
   "misi": [
     "Menyelenggarakan pembelajaran aktif, kreatif, efektif, dan menyenangkan.",
     "Menanamkan nilai keimanan dan ketakwaan melalui pembiasaan keagamaan.",
@@ -13,10 +24,8 @@
     "Membudayakan sikap peduli dan berbudaya lingkungan (Adiwiyata).",
     "Menjalin kerja sama harmonis antara sekolah, wali murid, dan masyarakat."
   ],
-  "sejarah": "SDN Bulukerto 01 merupakan sekolah dasar negeri yang berlokasi di wilayah Bulukerto, Kecamatan Bumiaji, Kota Batu. Berdiri sejak puluhan tahun silam, sekolah ini telah menjadi bagian penting dalam memajukan pendidikan dasar di kawasan pegunungan Kota Batu, dan terus berbenah mengikuti perkembangan kurikulum serta teknologi pembelajaran.",
-  "komite": [
-    { "name": "Ketua Komite Sekolah", "role": "Ketua Komite" },
-    { "name": "Sekretaris Komite", "role": "Sekretaris" },
-    { "name": "Bendahara Komite", "role": "Bendahara" }
-  ]
+  "sambutanFoto": "/images/uploads/raden-roro-srinoviani-s.psi.-kepala-sekolah.jpeg",
+  "sambutanNama": "Raden Roro Srinoviani, S.Psi.",
+  "sambutanJabatan": "Kepala Sekolah",
+  "sambutanText": "Assalamu'alaikum warahmatullahi wabarakatuh. Selamat datang di portal resmi SDN Bulukerto 01. Kami hadir sebagai lembaga pendidikan dasar negeri yang berkomitmen membentuk peserta didik yang cerdas, berkarakter, dan berakhlak mulia. Melalui platform ini, kami berupaya menghadirkan transparansi informasi bagi seluruh wali murid dan masyarakat. Semoga sinergi antara sekolah, keluarga, dan lingkungan mampu mengantarkan putra-putri kita menjadi generasi unggul kebanggaan Kota Batu."
 }
