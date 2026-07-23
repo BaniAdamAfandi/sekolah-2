@@ -1,6 +1,6 @@
 ---
-title: "Ruang Kelas"
-category: "Fasilitas"
-image: "/images/uploads/galeri-kelas.svg"
+title: Ruang Kelas
+category: Fasilitas
+image: /images/uploads/ruang-kelas-1.jpg
 order: 2
 ---
