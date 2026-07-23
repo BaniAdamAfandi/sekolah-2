@@ -1,6 +1,7 @@
 ---
-name: "Nama Guru Kelas 6, S.Pd."
-nip: "NIP. 19880000 000000 0 000"
-role: "Guru Kelas 6 / Wali Kelas"
+name: "Rudi Siswanto, S.Pd. "
+nip: ""
+role: Guru PJOK
+photo: /images/uploads/rudi-siswanto-s.pd.-guru-pjok.jpeg
 order: 3
 ---
