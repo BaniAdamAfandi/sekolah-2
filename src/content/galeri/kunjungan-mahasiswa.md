@@ -1,6 +1,6 @@
 ---
 title: Kunjungan Mahasiswa
-category: Kagiatan
+category: Kegiatan
 image: /images/uploads/siswa-ramai-ramai.jpg
 order: 7
 ---
