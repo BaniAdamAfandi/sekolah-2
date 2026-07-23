@@ -1,6 +1,7 @@
 ---
-name: "Nama Kepala Sekolah, S.Pd., M.Pd."
-nip: "NIP. 19700000 000000 0 000"
-role: "Kepala Sekolah"
+name: Raden Roro Srinoviani, S.Psi.
+nip: ""
+role: Kepala Sekolah
+photo: /images/uploads/raden-roro-srinoviani-s.psi.-kepala-sekolah.jpeg
 order: 1
 ---
