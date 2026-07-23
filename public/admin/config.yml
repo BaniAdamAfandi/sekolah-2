@@ -115,12 +115,17 @@ collections:
             widget: "list"
             field: { label: "Poin Misi", name: "item", widget: "string" }
           - { label: "Sejarah", name: "sejarah", widget: "text" }
-          - label: "Komite Sekolah"
-            name: "komite"
+          - label: "Tujuan Sekolah"
+            name: "tujuan"
+            widget: "list"
+            field: { label: "Poin Tujuan", name: "item", widget: "string" }
+          - label: "Nilai-Nilai Sekolah"
+            name: "nilaiSekolah"
             widget: "list"
             fields:
-              - { label: "Nama", name: "name", widget: "string" }
-              - { label: "Jabatan", name: "role", widget: "string" }
+              - { label: "Nama Nilai", name: "nama", widget: "string" }
+              - { label: "Deskripsi", name: "deskripsi", widget: "text" }
+          - { label: "Komitmen Nilai Sekolah", name: "komitmenNilai", widget: "text" }
 
       - name: "ppdb"
         label: "Halaman PPDB"

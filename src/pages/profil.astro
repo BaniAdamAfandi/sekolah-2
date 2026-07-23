@@ -75,21 +75,58 @@ const p = await getPage('profil');
     </div>
   </section>
 
-  <!-- Komite -->
+  <!-- Tujuan -->
   {
-    p.komite?.length > 0 && (
+    p.tujuan?.length > 0 && (
       <section class="bg-white">
         <div class="container-x py-16 md:py-20">
-          <span class="eyebrow">Tata Kelola</span>
-          <h2 class="mt-3 text-3xl font-bold md:text-4xl">Komite Sekolah</h2>
-          <div class="mt-10 grid grid-cols-1 border border-line sm:grid-cols-3">
-            {p.komite.map((k: any, i: number) => (
-              <div class:list={['bg-surface p-7', i !== 0 && 'border-t border-line sm:border-l sm:border-t-0']}>
+          <span class="eyebrow">Arah Pengembangan</span>
+          <h2 class="mt-3 text-3xl font-bold md:text-4xl">Tujuan Sekolah</h2>
+          <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {p.tujuan.map((tujuan: string, i: number) => (
+              <div class="rounded-xl border border-line bg-surface p-7">
                 <div class="font-sans text-xs text-brand-700">{String(i + 1).padStart(2, '0')}/</div>
-                <p class="mt-3 font-display text-lg font-bold text-navy">{k.name}</p>
-                <p class="mt-1 font-sans text-xs uppercase tracking-wider text-ink/70">{k.role}</p>
+                <p class="mt-3 leading-relaxed text-ink">{tujuan}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- Nilai Sekolah -->
+  {
+    p.nilaiSekolah?.length > 0 && (
+      <section class="border-t border-line bg-surface">
+        <div class="container-x py-16 md:py-20">
+          <span class="eyebrow">Budaya Sekolah</span>
+          <h2 class="mt-3 text-3xl font-bold md:text-4xl">Nilai-Nilai Sekolah</h2>
+          <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {p.nilaiSekolah.map((nilai: any, i: number) => (
+              <article class="rounded-xl border border-line bg-white p-7">
+                <div class="font-sans text-xs text-brand-700">{String(i + 1).padStart(2, '0')}/</div>
+                <h3 class="mt-3 font-display text-xl font-bold text-navy">{nilai.nama}</h3>
+                <p class="mt-2 leading-relaxed text-ink/80">{nilai.deskripsi}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- Komitmen Nilai -->
+  {
+    p.komitmenNilai?.length > 0 && (
+      <section class="border-t border-line bg-white">
+        <div class="container-x grid gap-10 py-16 md:grid-cols-12 md:py-20">
+          <div class="md:col-span-4">
+            <span class="eyebrow">Implementasi Bersama</span>
+            <h2 class="mt-3 text-3xl font-bold md:text-4xl">Komitmen Nilai Sekolah</h2>
+          </div>
+          <div class="md:col-span-8">
+            <p class="border-l-4 border-accent bg-surface p-7 text-lg leading-relaxed text-ink">{p.komitmenNilai}</p>
           </div>
         </div>
       </section>
