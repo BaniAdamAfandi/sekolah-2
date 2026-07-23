@@ -1,6 +1,7 @@
 ---
-name: "Nama Guru Kelas 1, S.Pd."
-nip: "NIP. 19850000 000000 0 000"
-role: "Guru Kelas 1"
-order: 2
+name: Abdul Manab, S.Pd.I. GURU PAI
+nip: ""
+role: Guru Pendidikan Agama Islam
+photo: /images/uploads/abdul-manab-s.pd.i.-guru-pai.jpeg
+order: 1
 ---
