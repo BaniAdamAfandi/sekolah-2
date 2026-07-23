@@ -1,6 +1,7 @@
 ---
-name: "Nama Guru PJOK, S.Pd."
-nip: "NIP. 19920000 000000 0 000"
-role: "Guru Pendidikan Jasmani (PJOK)"
+name: Suermin, S.Pd.
+nip: ""
+role: Guru Kelas II
+photo: /images/uploads/suermin-s.pd.jpeg
 order: 5
 ---
