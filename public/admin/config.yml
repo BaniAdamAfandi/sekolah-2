@@ -150,6 +150,21 @@ collections:
             field: { label: "Langkah", name: "item", widget: "string" }
           - { label: "Catatan", name: "catatan", widget: "text" }
 
+      - name: "modul"
+        label: "Halaman Modul"
+        file: "src/content/pages/modul.json"
+        fields:
+          - { label: "Label Kecil", name: "eyebrow", widget: "string" }
+          - { label: "Judul Halaman", name: "pageTitle", widget: "string" }
+          - { label: "Subjudul Halaman", name: "pageSubtitle", widget: "text" }
+          - label: "Daftar Materi"
+            name: "resources"
+            widget: "list"
+            fields:
+              - { label: "Judul", name: "title", widget: "string" }
+              - { label: "Deskripsi", name: "description", widget: "text" }
+              - { label: "Link Materi", name: "url", widget: "string" }
+
       - name: "footer"
         label: "Footer"
         file: "src/content/pages/footer.json"

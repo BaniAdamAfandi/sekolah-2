@@ -1,0 +1,22 @@
+{
+  "eyebrow": "Materi Pembelajaran",
+  "pageTitle": "Modul",
+  "pageSubtitle": "Unduh dan gunakan materi pendukung pembelajaran berikut.",
+  "resources": [
+    {
+      "title": "Modul",
+      "description": "Materi modul pembelajaran untuk kegiatan edukasi.",
+      "url": "https://drive.google.com/file/d/1GzOhinCzcyoSQIw7IpUjpZKWDpkovv7b/view?usp=drive_link"
+    },
+    {
+      "title": "PPT",
+      "description": "Slide presentasi pendamping materi pembelajaran.",
+      "url": "https://docs.google.com/presentation/d/1KwQYeVFxQy5iuMsV9dvhVwiDFqZDd1Mm/edit?usp=drive_link&ouid=105270672216196466413&rtpof=true&sd=true"
+    },
+    {
+      "title": "Template Menabung",
+      "description": "Template praktik menabung yang dapat digunakan siswa.",
+      "url": "https://drive.google.com/file/d/1LBe8jXah87JZyI9MnQaGKDTamTye1MEy/view?usp=drive_link"
+    }
+  ]
+}
