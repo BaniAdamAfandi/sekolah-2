@@ -1,6 +1,7 @@
 ---
-name: "Nama Guru PAI, S.Pd.I."
-nip: "NIP. 19900000 000000 0 000"
-role: "Guru Pendidikan Agama Islam"
+name: Evi Adi Trisilawati, S.Pd
+nip: ""
+role: Guru Kelas IV
+photo: /images/uploads/evi-adi-trisilawati-s.pd.jpeg
 order: 4
 ---
