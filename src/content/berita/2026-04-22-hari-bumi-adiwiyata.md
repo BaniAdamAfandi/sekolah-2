@@ -3,6 +3,7 @@ title: "Menyulap Gawai Jadi Alat Belajar, SDN 1 Bulukerto Cetak Generasi
   “Bersinar” lewat Kelas Digital "
 publishDate: 2026-06-17T16:00:00.000+07:00
 category: Prestasi
+thumbnail: /images/uploads/cara-sd.webp
 excerpt: Di tengah kekhawatiran penggunaan gawai yang semakin sulit dipisahkan
   dari kehidupan anak-anak, SDN 1 Bulukerto di Kecamatan Bumiaji, Kota Batu
   justru memilih pendekatan berbeda.  Sekolah dasar negeri ini mengubah  gadget
