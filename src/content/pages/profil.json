@@ -1,39 +1,38 @@
 {
+  "nilaiSekolah": [
+    {
+      "nama": "Bertakwa",
+      "deskripsi": "Menumbuhkan keimanan dan ketakwaan kepada Tuhan Yang Maha Esa melalui pembiasaan ibadah, akhlak mulia, kejujuran, disiplin, serta sikap saling menghormati dan menghargai keberagaman."
+    },
+    {
+      "nama": "Cerdas",
+      "deskripsi": "Mengembangkan kemampuan berpikir kritis, kreatif, literasi, numerasi, dan pemecahan masalah melalui pembelajaran yang aktif, bermakna, dan berpusat pada murid."
+    },
+    {
+      "nama": "Inovatif",
+      "deskripsi": "Mendorong lahirnya ide, karya, dan solusi kreatif melalui pembelajaran mendalam, proyek penguatan karakter, pemanfaatan teknologi, serta pengembangan bakat dan minat peserta didik."
+    },
+    {
+      "nama": "Peduli Lingkungan",
+      "deskripsi": "Membiasakan perilaku hidup bersih, sehat, tertib, dan bertanggung jawab dalam menjaga kelestarian lingkungan sehingga tercipta sekolah yang hijau, aman, dan nyaman."
+    },
+    {
+      "nama": "Responsif",
+      "deskripsi": "Bersikap adaptif terhadap perkembangan ilmu pengetahuan dan teknologi, memiliki literasi digital yang bijak, serta mampu berkomunikasi, berkolaborasi, dan menyelesaikan masalah secara positif."
+    },
+    {
+      "nama": "Aman",
+      "deskripsi": "Mewujudkan lingkungan sekolah yang bebas dari perundungan, kekerasan, diskriminasi, dan segala bentuk intoleransi melalui budaya saling menghargai, melindungi, dan menjaga satu sama lain."
+    },
+    {
+      "nama": "Nyaman",
+      "deskripsi": "Membangun suasana belajar yang ramah, inklusif, menyenangkan, sehat, dan berpihak pada murid sehingga setiap warga sekolah merasa diterima, dihargai, dan mampu berkembang sesuai potensinya."
+    }
+  ],
   "pageSubtitle": "Sejarah, visi, misi, tujuan, dan nilai-nilai SDN Bulukerto 01 Kota Batu.",
   "visi": "Terwujudnya SD Negeri Bulukerto 01 Unggul Dalam Pembelajaran Guna Menghasilkan murid yang  Bertaqwa, Cerdas, Inovatif, Peduli Lingkungan, dan Responsif terhadap perkembangan zaman (BERSINAR).",
   "pageTitle": "Profil Institusi",
   "sejarah": "SD NEGERI BULUKERTO 01 merupakan salah satu sekolah jenjang SD berstatus Negeri yang berada di wilayah Kec. Bumiaji, Kota Batu, Jawa Timur. SD NEGERI BULUKERTO 01 didirikan pada tanggal 1 Januari 1970 dengan Nomor SK Pendirian yang berada dalam naungan Kementerian Pendidikan dan Kebudayaan. Dalam kegiatan pembelajaran, sekolah yang memiliki 96 siswa ini dibimbing oleh 8 guru dan 2 tenaga kependidikan yang profesional di bidangnya. ",
-  "tujuan": [
-    "Mewujudkan pembelajaran yang unggul, aktif, menyenangkan, dan berpusat pada murid.",
-    "Membentuk peserta didik yang beriman, bertakwa, berakhlak mulia, dan berkarakter.",
-    "Meningkatkan kemampuan literasi, numerasi, serta prestasi akademik dan nonakademik peserta didik.",
-    "Mengembangkan kreativitas, kemandirian, bakat, dan minat peserta didik melalui proyek serta pemanfaatan teknologi.",
-    "Menumbuhkan budaya hidup bersih, sehat, aman, dan peduli lingkungan.",
-    "Membekali peserta didik dengan keterampilan abad ke-21 agar adaptif dan responsif terhadap perkembangan zaman."
-  ],
-  "nilaiSekolah": [
-    {
-      "nama": "Bertakwa",
-      "deskripsi": "Menumbuhkan keimanan, ketakwaan, akhlak mulia, dan sikap saling menghormati dalam kehidupan sehari-hari."
-    },
-    {
-      "nama": "Cerdas",
-      "deskripsi": "Mengembangkan kemampuan berpikir kritis, literasi, numerasi, serta kecakapan akademik dan nonakademik."
-    },
-    {
-      "nama": "Inovatif",
-      "deskripsi": "Mendorong kreativitas, rasa ingin tahu, keberanian mencoba, dan pemanfaatan teknologi secara bijak."
-    },
-    {
-      "nama": "Peduli Lingkungan",
-      "deskripsi": "Membiasakan hidup bersih, sehat, hemat sumber daya, dan bertanggung jawab terhadap lingkungan."
-    },
-    {
-      "nama": "Responsif",
-      "deskripsi": "Membentuk warga sekolah yang sigap, adaptif, kolaboratif, dan peka terhadap perkembangan zaman."
-    }
-  ],
-  "komitmenNilai": "SDN Bulukerto 01 berkomitmen menjadikan nilai BERSINAR sebagai dasar pembelajaran, pembiasaan, dan pengambilan keputusan di sekolah. Komitmen ini diwujudkan melalui keteladanan yang konsisten dari seluruh pendidik dan tenaga kependidikan, pelibatan peserta didik, orang tua, serta masyarakat dalam penguatan budaya sekolah, dan evaluasi berkala agar penerapan nilai sekolah terus berkembang.",
   "misi": [
     "Menyelenggarakan pembelajaran yang unggul, aktif, dan berpusat pada murid sesuai Kurikulum Merdeka dengan Pendekatan Pembelajaran Mendalam untuk mengoptimalkan potensi peserta didik. ",
     "Menanamkan nilai keimanan dan ketaqwaan melalui pembiasaan kegiatan keagamaan dan penguatan karakter dalam kehidupan sehari-hari di sekolah. ",
@@ -44,6 +43,19 @@
   ],
   "sambutanFoto": "/images/uploads/raden-roro-srinoviani-s.psi.-kepala-sekolah.jpeg",
   "sambutanNama": "Raden Roro Srinoviani, S.Psi.",
+  "komitmenNilai": "Seluruh warga SD Negeri Bulukerto 01 berkomitmen menjadikan nilai BERSINAR sebagai landasan dalam berpikir, bersikap, dan bertindak untuk mewujudkan budaya sekolah yang aman, nyaman, berkarakter, berprestasi, dan siap menghadapi tantangan masa depan.",
+  "tujuan": [
+    "Mewujudkan pembelajaran yang unggul, aktif, menyenangkan, dan berpusat pada murid sesuai Kurikulum Merdeka dengan Pendekatan Pembelajaran Mendalam sehingga seluruh murid berkembang sesuai potensi, kebutuhan, dan tahap perkembangannya. ",
+    "Membentuk peserta didik yang beriman, bertakwa kepada Tuhan Yang Maha Esa, berakhlak mulia, serta membiasakan perilaku religius, disiplin, jujur, santun, dan bertanggung jawab dalam kehidupan sehari-hari. ",
+    "Meningkatkan kompetensi akademik dan nonakademik peserta didik melalui penguatan literasi, numerasi, sains, seni, olahraga, dan kegiatan ekstrakurikuler sehingga mampu meraih prestasi sesuai bakat dan minatnya. ",
+    "Mengembangkan kreativitas, inovasi, kemampuan berpikir kritis, komunikasi, kolaborasi, dan pemecahan masalah melalui pembelajaran berbasis proyek, pemanfaatan teknologi, dan kegiatan yang bermakna. ",
+    "Menumbuhkan karakter peduli lingkungan melalui pembiasaan hidup bersih dan sehat, pengelolaan lingkungan sekolah, serta partisipasi aktif dalam program sekolah berwawasan lingkungan. ",
+    "Membekali peserta didik dengan keterampilan abad ke-21 dan literasi digital agar mampu beradaptasi, berpikir terbuka, serta responsif terhadap perkembangan ilmu pengetahuan, teknologi, dan perubahan zaman. ",
+    "Mewujudkan lingkungan sekolah yang aman, nyaman, inklusif, ramah anak, dan bebas dari perundungan sehingga mendukung tumbuh kembang seluruh warga sekolah secara optimal. ",
+    "Meningkatkan kompetensi pendidik dan tenaga kependidikan secara berkelanjutan agar mampu menyelenggarakan layanan pendidikan yang profesional, inovatif, dan berkualitas. ",
+    "Memperkuat kemitraan dengan orang tua, komite sekolah, masyarakat, dan berbagai pemangku kepentingan dalam mendukung penyelenggaraan pendidikan yang berkualitas. ",
+    "Mewujudkan tata kelola sekolah yang efektif, transparan, akuntabel, serta berorientasi pada peningkatan mutu pendidikan secara berkelanjutan"
+  ],
   "sambutanJabatan": "Kepala Sekolah",
   "sambutanText": "Assalamu'alaikum warahmatullahi wabarakatuh,\nSalam sejahtera untuk kita semua.\nPuji syukur ke hadirat Tuhan Yang Maha Esa atas rahmat dan karunia-Nya sehingga Website SD Negeri Bulukerto dapat hadir sebagai sarana informasi, komunikasi, dan kolaborasi bagi seluruh warga sekolah serta masyarakat.\nSD Negeri Bulukerto senantiasa menjunjung tinggi nilai-nilai budaya Bulukerto yang kaya akan semangat gotong royong, kebersamaan, sopan santun, dan kepedulian terhadap sesama. Nilai-nilai luhur tersebut kami tanamkan dalam setiap proses pembelajaran sebagai bekal bagi peserta didik untuk tumbuh menjadi generasi yang berkarakter, berprestasi, dan berakhlak mulia.\nMelalui semangat NEBUSA BERSINAR (Bertaqwa, Cerdas, Inovatif, Peduli Lingkungan, dan Responsif terhadap perkembangan zaman), kami berkomitmen menghadirkan layanan pendidikan yang berkualitas, ramah anak, dan mampu mengembangkan potensi setiap peserta didik sesuai bakat dan minatnya.\nKami berharap website ini menjadi jembatan komunikasi yang efektif antara sekolah, orang tua, peserta didik, alumni, dan seluruh pemangku kepentingan. Dukungan, sinergi, serta partisipasi aktif dari semua pihak menjadi kunci dalam mewujudkan lingkungan belajar yang aman, nyaman, dan berprestasi demi masa depan anak-anak kita.\nTerima kasih atas kepercayaan dan kerja sama yang telah terjalin. Terimakasih juga untuk Mahasiswa FIA Universitas Brawijaya dalam membantu pembuatan Website SD Negeri Bulukerto 01.\n Semoga SD Negeri Bulukerto terus menjadi sekolah yang unggul, berbudaya, dan menginspirasi.\nWassalamu'alaikum warahmatullahi wabarakatuh."
 }
